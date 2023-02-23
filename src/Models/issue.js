@@ -16,8 +16,7 @@ const Priority = require("../utils/Priority")
     priority : {
         type: String,
         enum :Priority,
-        required: true,
-        default:Priority.LOW
+        required: "choose any one of them --- LOW MEDIUM HIGH."
     },
     createdBy:{
         type: mongoose.Schema.Types.ObjectId,
@@ -27,7 +26,7 @@ const Priority = require("../utils/Priority")
     status : {
         type: String,
         enum:Status,
-        default: Status.unAssigned
+        default: Status.values[0]
     },
    }, {
     timestamps: true

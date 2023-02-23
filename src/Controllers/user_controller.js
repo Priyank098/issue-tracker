@@ -1,6 +1,7 @@
 const { TokenExpiredError } = require("jsonwebtoken")
 const Issue = require("../Models/issue")
 const User = require("../Models/user")
+const Status = require("../utils/Status")
 
 const Login = async (req, res, next) => {
     const { email, password } = req.body
@@ -29,20 +30,52 @@ const Login = async (req, res, next) => {
         }
     } catch (error) {
         next(error)
-
     }
 }
 
 const createIssue = async (req, res, next) => {
-    const issue = await new Issue({
-        ...req.body,
-        createdBy: req.user._id
-    })
+    const { title, description, priority } = req.body
     try {
-        if (!await issue.save())
-            throw new Error("Data not inserted")
-
-        res.status(200).json(issue)
+        if (!title || !description || !priority) {
+            throw new Error("Title , Description and priority should be valid", {
+                cause: { status: 400 }
+            })
+        }
+        if (req.body.assignedTo) {
+            const issue = await new Issue({
+                ...req.body,
+                createdBy: req.user._id,
+                status: Status.values[1]
+            })
+            if (!await issue.save())
+                throw new Error("Data not inserted")
+            else{
+                const assignUserData =await User.findById(req.body.assignedTo)
+                const count = assignUserData.assignedCount
+                const assignUser = await User.findByIdAndUpdate(req.body.assignedTo,{assignedCount:count+1}, {
+                    new: true
+                })
+                if(!assignUser){
+                    const deleteIssue = await Issue.findByIdAndDelete(issue._id)
+                }else{
+                    res.status(200).json({
+                        sucess:true
+                    })
+                }
+            }    
+        } else {
+            const issue = await new Issue({
+                ...req.body,
+                createdBy: req.user._id
+            })
+            if (!await issue.save())
+                throw new Error("Data not inserted")
+            else{
+                res.status(200).json({
+                    sucess:true
+                })
+            }    
+        }
     } catch (error) {
         next(error)
     }
@@ -53,16 +86,18 @@ const updateIssue = async (req, res, next) => {
     try {
         const _id = req.params.id
         const updateIssue = await Issue.findByIdAndUpdate(_id, req.body, {
-            new: true
+            new: true, runValidators: true
         });
         if (!updateIssue) {
             throw new Error("Data not updated Please try again later", {
                 cause: { status: 404 }
             })
+        } else {
+            res.status(200).json({
+                success: true,
+                data: updateIssue
+            })
         }
-        res.status(200).json({
-            success: true,
-        })
     } catch (error) {
         next(error)
     }
@@ -99,7 +134,22 @@ const getIssueById = async (req, res, next) => {
     }
 }
 const deleteIssue = async (req, res, next) => {
-
+    try {
+        const _id = req.params.id
+        const deleteIssue = await Issue.findByIdAndDelete(_id);
+        if (!deleteIssue) {
+            throw new Error("Data not delete Please try again later", {
+                cause: { status: 404 }
+            })
+        } else {
+            res.status(200).json({
+                success: true,
+                data: updateIssue
+            })
+        }
+    } catch (error) {
+        next(error)
+    }
 }
 
 module.exports = { Login, createIssue, updateIssue, getIssue, getIssueById, deleteIssue }

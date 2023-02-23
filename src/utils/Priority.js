@@ -1,7 +1,7 @@
 const Priority = {
-    LOW : 'LOW',
-    MEDIUM : 'MEDIUM',
-    HIGH : 'HIGH',
+   values:['LOW','MEDIUM','HIGH'] ,
+   message: "Choose only from them LOW MEDIUM HIGH"
+
   }
   
-  module.exports = Priority
+module.exports = Priority

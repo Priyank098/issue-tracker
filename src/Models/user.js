@@ -26,6 +26,7 @@ const jwt = require('jsonwebtoken')
     },
     assignedCount : {
         type: Number,
+        default:0
     },
     token:{
         type: String,
