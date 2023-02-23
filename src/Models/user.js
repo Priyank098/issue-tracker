@@ -33,8 +33,7 @@ const jwt = require('jsonwebtoken')
     }, 
 }, {
     timestamps: true
-}
-);
+});
 
 userSchema.virtual('issues', {
     ref: 'Issues',

@@ -1,6 +1,6 @@
-const { TokenExpiredError } = require("jsonwebtoken")
-const Issue = require("../Models/issue")
-const User = require("../Models/user")
+const Issue = require("../models/issue")
+const User = require("../models/user")
+const { validatingFields } = require("../services/user.services")
 const Status = require("../utils/Status")
 
 const Login = async (req, res, next) => {
@@ -36,11 +36,7 @@ const Login = async (req, res, next) => {
 const createIssue = async (req, res, next) => {
     const { title, description, priority } = req.body
     try {
-        if (!title || !description || !priority) {
-            throw new Error("Title , Description and priority should be valid", {
-                cause: { status: 400 }
-            })
-        }
+       validatingFields(title, description, priority)
         if (req.body.assignedTo) {
             const issue = await new Issue({
                 ...req.body,
@@ -56,7 +52,8 @@ const createIssue = async (req, res, next) => {
                     new: true
                 })
                 if(!assignUser){
-                    const deleteIssue = await Issue.findByIdAndDelete(issue._id)
+                    await Issue.findByIdAndDelete(issue._id)
+                    throw new Error("Issue not assigned to user. Try agin later")
                 }else{
                     res.status(200).json({
                         sucess:true

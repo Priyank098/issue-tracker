@@ -1,9 +1,9 @@
 const express = require('express');
 const error_middleware  = require('./middleware/error_middleware');
 require("dotenv").config({ path: `./src/env/${process.env.NODE_ENV}.env`});
-require("./Config/database")
-const adminrouter = require("./Routes/admin_route")
-const userRouter = require("./Routes/user_route")
+require("./config/database")
+const adminrouter = require("./routes/admin_route")
+const userRouter = require("./routes/user_route")
 
 const app = express()
 app.use(express.json());

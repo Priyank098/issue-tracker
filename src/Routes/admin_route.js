@@ -1,6 +1,6 @@
 const express = require('express')
 const router = new express.Router()
-const {createUser} = require("../Controllers/admin_controller")
+const {createUser} = require("../controllers/admin_controller")
 
 
 router.post('/createUser',createUser)
