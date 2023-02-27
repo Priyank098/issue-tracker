@@ -212,7 +212,6 @@ const assignIssue = async (req, res, next) => {
 
 const updateStatus = async (req, res, next) => {
     try {
-        const issueData = await Issue.findById(req.body.id)
         if(!Status.includes(req.body.status)){
             throw new Error("Choose only from them 'unAssigned','NotStarted','inProgress','Completed'", {
                 cause: { status: 404 }
@@ -225,7 +224,7 @@ const updateStatus = async (req, res, next) => {
         }
 
     } catch (error) {
-
+       next(error)
     }
 }
 

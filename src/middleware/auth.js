@@ -4,8 +4,9 @@ const Issue = require("../models/issue")
 
 const auth = async (req, res, next) => {
     try {
-        if(req.body.token){
-            const token = req.body.token
+        if(req.params.token){
+            console.log(req.params.token);
+            const token = req.params.token
             const decoded = jwt.verify(token, 'jidjfidjidijij')
             // console.log(token);
             const user = await User.findOne({ _id: decoded._id, token: token })
@@ -38,8 +39,10 @@ const auth = async (req, res, next) => {
 const verifyUser = async (req, res, next) => {
 
     try {
+        console.log(req.user._id);
         const issueData = await Issue.findById(req.params.id)
-        if(issueData.createdBy === req.user._id){
+        console.log(issueData);
+        if(issueData.createdBy.toString() === req.user._id.toString()){
             next()
         }else{
             throw new Error("You have no access to this issue", {

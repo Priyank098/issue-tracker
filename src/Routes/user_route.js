@@ -11,14 +11,14 @@ router.post('/createIssue',auth,userController.createIssue)
 //update Issue 
 router.patch('/updateIssue/:id',auth,verifyUser,userController.updateIssue)
 
-//delete Issue 
-router.delete('/deleteIssue/:id',auth,verifyUser,userController.deleteIssue)
+//view all issue 
+router.get('/viewIssue',auth,userController.getIssue)
 
 //view Issue by userid
 router.get('/viewIssueById/:id',auth,userController.getIssueById)
 
-//view all issue 
-router.get('/viewIssue',auth,userController.getIssue)
+//delete Issue 
+router.delete('/deleteIssue/:id',auth,verifyUser,userController.deleteIssue)
 
 //assign issue to user 
 router.post('/assignIssue',auth,userController.assignIssue)
