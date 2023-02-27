@@ -1,6 +1,6 @@
 const Issue = require("../models/issue")
 const User = require("../models/user")
-const { validatingFields } = require("../services/user.services")
+const { validatingFields, update_issue, update_issue_helper } = require("../services/user.services")
 const Status = require("../utils/Status")
 
 const Login = async (req, res, next) => {
@@ -36,8 +36,9 @@ const Login = async (req, res, next) => {
 const createIssue = async (req, res, next) => {
     const { title, description, priority } = req.body
     try {
-       validatingFields(title, description, priority)
+        validatingFields(title, description, priority)
         if (req.body.assignedTo) {
+            const assignUserData = await User.findById(req.body.assignedTo)
             const issue = await new Issue({
                 ...req.body,
                 createdBy: req.user._id,
@@ -45,21 +46,13 @@ const createIssue = async (req, res, next) => {
             })
             if (!await issue.save())
                 throw new Error("Data not inserted")
-            else{
-                const assignUserData =await User.findById(req.body.assignedTo)
-                const count = assignUserData.assignedCount
-                const assignUser = await User.findByIdAndUpdate(req.body.assignedTo,{assignedCount:count+1}, {
-                    new: true
+            else {
+                assignUserData.updateCount()
+                res.status(200).json({
+                    sucess: true,
+                    data: issue
                 })
-                if(!assignUser){
-                    await Issue.findByIdAndDelete(issue._id)
-                    throw new Error("Issue not assigned to user. Try agin later")
-                }else{
-                    res.status(200).json({
-                        sucess:true
-                    })
-                }
-            }    
+            }
         } else {
             const issue = await new Issue({
                 ...req.body,
@@ -67,33 +60,49 @@ const createIssue = async (req, res, next) => {
             })
             if (!await issue.save())
                 throw new Error("Data not inserted")
-            else{
+            else {
                 res.status(200).json({
-                    sucess:true
+                    sucess: true,
+                    data: issue
                 })
-            }    
+            }
         }
     } catch (error) {
         next(error)
     }
 }
 
-
 const updateIssue = async (req, res, next) => {
+    const updates = Object.keys(req.body)
+    const allowedUpdates = ['title', 'description', 'priority', 'assignedTo']
+    const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
+    if (!isValidOperation) {
+        throw new Error("Invaid Updates", {
+            cause: { status: 404 }
+        })
+    }
+    const { title, description, priority } = req.body
+
     try {
-        const _id = req.params.id
-        const updateIssue = await Issue.findByIdAndUpdate(_id, req.body, {
-            new: true, runValidators: true
-        });
-        if (!updateIssue) {
-            throw new Error("Data not updated Please try again later", {
-                cause: { status: 404 }
-            })
+        if (req.body.assignedTo) {
+            const issueData = await Issue.findById(req.params.id)
+            const assignUserData = await User.findById(req.body.assignedTo)
+            if (issueData.status === Status.values[0]) {
+                validatingFields(title, description, priority)
+                update_issue(req, res, Issue, assignUserData, "", Status)
+            } else if (issueData.status === Status.values[1]) {
+                if (issueData.assignedTo == req.body.assignedTo) {
+                    validatingFields(title, description, priority)
+                    update_issue(req, res, Issue, "", "", "")
+                } else {
+                    const previousAssignUserData = await User.findById(issueData.assignedTo)
+                    validatingFields(title, description, priority)
+                    update_issue(req, res, Issue, assignUserData, previousAssignUserData, "")
+                }
+            }
         } else {
-            res.status(200).json({
-                success: true,
-                data: updateIssue
-            })
+            validatingFields(title, description, priority)
+            update_issue(req, res, Issue, "", "", "")
         }
     } catch (error) {
         next(error)
@@ -108,32 +117,47 @@ const getIssue = async (req, res, next) => {
                 cause: { status: 404 }
             })
         }
-
-        res.status(200).json(issueData)
+        res.status(200).json({
+            success: true,
+            data: issueData
+        })
     } catch (error) {
         next(error)
     }
 }
 
 const getIssueById = async (req, res, next) => {
-
     try {
+        if (!req.params.id) {
+            throw new Error("Id should be valid", {
+                cause: { status: 404 }
+            })
+        }
         const issueData = await Issue.findById(req.params.id).populate("createdBy")
         if (!issueData) {
             throw new Error("no data found", {
                 cause: { status: 404 }
             })
         }
-
-        res.status(200).json(issueData)
+        res.status(200).json({
+            success: true,
+            data: issueData
+        })
     } catch (error) {
         next(error)
     }
 }
+
 const deleteIssue = async (req, res, next) => {
     try {
-        const _id = req.params.id
-        const deleteIssue = await Issue.findByIdAndDelete(_id);
+        if (!req.params.id) {
+            throw new Error("Id should be valid", {
+                cause: { status: 404 }
+            })
+        }
+        const deleteIssue = await Issue.findByIdAndDelete(req.params.id);
+        const assignUserData = await User.findById(deleteIssue.assignedTo)
+        assignUserData.updateCount()
         if (!deleteIssue) {
             throw new Error("Data not delete Please try again later", {
                 cause: { status: 404 }
@@ -141,7 +165,7 @@ const deleteIssue = async (req, res, next) => {
         } else {
             res.status(200).json({
                 success: true,
-                data: updateIssue
+                data: deleteIssue
             })
         }
     } catch (error) {
@@ -149,4 +173,53 @@ const deleteIssue = async (req, res, next) => {
     }
 }
 
-module.exports = { Login, createIssue, updateIssue, getIssue, getIssueById, deleteIssue }
+const assignIssue = async (req, res, next) => {
+    try {
+        const { _id, assignedTo } = req.body
+        if (!_id || !assignedTo) {
+            throw new Error("Assigned person Id should be valid", {
+                cause: { status: 404 }
+            })
+        }
+        const issueData = await Issue.findById(_id)
+        const assignUserData = await User.findById(assignedTo)
+        if (issueData.status === Status.values[0]) {
+            const updateIssue = await Issue.findByIdAndUpdate(_id, { assignedTo: assignedTo, status: Status.values[1] }, {
+                new: true, runValidators: true
+            });
+            await assignUserData.updateCount()
+            update_issue_helper(updateIssue, res)
+        } else if (issueData.status === Status.values[1]) {
+            if (issueData.assignedTo == req.body.assignedTo) {
+                throw new Error("Issue Already Assigned to this person.Please try different User", {
+                    cause: { status: 404 }
+                })
+            } else {
+                const previousAssignUserData = await User.findById(issueData.assignedTo)
+                const updateIssue = await Issue.findByIdAndUpdate(_id, { assignedTo: assignedTo }, {
+                    new: true, runValidators: true
+                });
+                await previousAssignUserData.updateCount()
+                await assignUserData.updateCount()
+                update_issue_helper(updateIssue, res)
+            }
+        }
+    } catch (error) {
+        next(error)
+    }
+}
+
+const updateStatus = async (req, res, next) => {
+    try {
+        const { _id } = req.body
+        const issueData = await Issue.findById(_id)
+
+    } catch (error) {
+
+    }
+}
+
+const statusFilterCount = (req,res,next)=>{
+   
+}
+module.exports = { Login, createIssue, updateIssue, getIssue, getIssueById, deleteIssue, assignIssue, updateStatus,statusFilterCount }

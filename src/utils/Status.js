@@ -1,5 +1,5 @@
  const Status = {
-  values:['unAssigned','NotStarted','inProgress','Completed'],
+  values:['unAssigned','Assigned','inProgress','Completed'],
   message:"Choose only from them 'unAssigned','NotStarted','inProgress','Completed'"
 }
 

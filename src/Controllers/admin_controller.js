@@ -11,4 +11,19 @@ const createUser = async(req,res) =>{
     }
 }
 
-module.exports= {createUser}
+const getuser = async (req, res, next) => {
+    try {
+        const userData = await User.find()
+        if (!userData) {
+            throw new Error("no data found", {
+                cause: { status: 404 }
+            })
+        }
+
+        res.status(200).json(userData)
+    } catch (error) {
+        next(error)
+    }
+}
+
+module.exports= {createUser,getuser}

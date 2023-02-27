@@ -1,36 +1,36 @@
-const mongoose =  require('mongoose');
+const mongoose = require('mongoose');
 const validator = require('validator')
 const bcrypt = require("bcryptjs")
 const jwt = require('jsonwebtoken')
-
- const userSchema = new mongoose.Schema({
-    name : {
+const issue = require("./issue")
+const userSchema = new mongoose.Schema({
+    name: {
         type: String,
-        required:true
+        required: true
     },
-    email : {
+    email: {
         type: String,
-        required:true
+        required: true
     },
-    password : {
+    password: {
         type: String,
-        required:true
+        required: true
     },
-    department : {
+    department: {
         type: String,
-        required:true
+        required: true
     },
-    isAdmin : {
+    isAdmin: {
         type: Boolean,
-        default:false
+        default: false
     },
-    assignedCount : {
+    assignedCount: {
         type: Number,
-        default:0
+        default: 0
     },
-    token:{
+    token: {
         type: String,
-    }, 
+    },
 }, {
     timestamps: true
 });
@@ -38,7 +38,7 @@ const jwt = require('jsonwebtoken')
 userSchema.virtual('issues', {
     ref: 'Issues',
     localField: '_id',
-    foreignField: 'owner'
+    foreignField: 'createdBy'
 })
 
 // userSchema.methods.toJSON = function () {
@@ -50,18 +50,25 @@ userSchema.virtual('issues', {
 //     return userObject
 // }
 
-
 userSchema.pre("save", async function (next) {
     if (this.isModified("password")) {
         this.password = await bcrypt.hash(this.password, 10);
         next();
     }
 })
+userSchema.methods.updateCount = async function () {
+    const user = this
+    const count = await issue.count({ assignedTo: user._id })
+    user.assignedCount = count;
+    await user.save()
+    return true
+}
+
 userSchema.methods.generateAuthToken = async function () {
     const user = this
     const token = jwt.sign({ _id: user._id.toString() }, "jidjfidjidijij")
 
-    user.token = token 
+    user.token = token
     await user.save()
 
     return token
