@@ -1,7 +1,7 @@
 const express = require('express')
 const router = new express.Router()
 const mongoose = require('mongoose')
-const {createUser,getUser,getUserById,updateUser,deleteUser} = require("../Controllers/admin_controller")
+const {createUser,getUser,getUserById,updateUser,deleteUser} = require("../controllers/admin_controller")
 const bcrypt = require('bcryptjs')
 
 //create User
