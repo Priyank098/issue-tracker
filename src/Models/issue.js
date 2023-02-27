@@ -41,7 +41,8 @@ const Priority = require("../utils/Priority")
 
 //     return userObject
 // }
+module.exports = mongoose.models.Issue || mongoose.model('Issue', IssueSchema);
 
-const Issue = new mongoose.model('Issue', IssueSchema)
+// const Issue =  mongoose.model('Issue', IssueSchema)
 
-module.exports = Issue
+// module.exports = Issue

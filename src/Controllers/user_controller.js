@@ -220,12 +220,14 @@ const updateStatus = async (req, res, next) => {
 }
 
 const statusFilterCount = async (req, res, next) => {
-    let unAssignedCount=0, assignedCount=0, inProgressCount=0, completedCount=0
-    
+    let unAssignedCount = 0, assignedCount = 0, inProgressCount = 0, completedCount = 0
+
     try {
-        const allIssuesop = await Issue.find({createdAt: {
-            $gte: new Date(new Date() - 7 * 60 * 60 * 24 * 1000)
-        }})
+        const allIssuesop = await Issue.find({
+            createdAt: {
+                $gte: new Date(new Date() - 7 * 60 * 60 * 24 * 1000)
+            }
+        })
         const allIssues = await Issue.find()
         allIssues.map((issue) => {
             console.log(issue.status);
@@ -240,7 +242,7 @@ const statusFilterCount = async (req, res, next) => {
         })
         res.status(201).json({
             success: true,
-            mainData:allIssuesop,
+            mainData: allIssuesop,
             data: {
                 unAssignedCount: unAssignedCount,
                 assignedCount: assignedCount,
@@ -253,18 +255,40 @@ const statusFilterCount = async (req, res, next) => {
     }
 }
 
-const logout = async(req,res,next) =>{
+const logout = async (req, res, next) => {
     try {
         req.user.token = ""
-        if(!await req.user.save()){
+        if (!await req.user.save()) {
             throw new Error("something went wrong please try again later")
         }
         res.status(200).json({
-            success:true
+            success: true
         })
     } catch (error) {
         next(error)
     }
 }
 
-module.exports = { Login, createIssue, updateIssue, getIssue, getIssueById, deleteIssue, assignIssue, updateStatus, statusFilterCount,logout }
+const userIssues = async (req, res, next) => {
+    try {
+        const issues = await Issue.find({ createdBy: req.user._id })
+        if (!issues) {
+            throw new Error("No issue created yet..", {
+                cause: { status: 404 }
+            })
+        }
+        else {
+            res.status(201).json({
+                success: true,
+                data: issues
+            })
+        }
+    } catch (error) {
+        next(error)
+    }
+}
+
+const userAssignedIssues = async (req, res, next) => {
+
+}
+module.exports = { Login, createIssue, updateIssue, getIssue, getIssueById, deleteIssue, assignIssue, updateStatus, statusFilterCount, logout, userAssignedIssues, userIssues }
