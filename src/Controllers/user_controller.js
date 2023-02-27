@@ -1,3 +1,4 @@
+const { findByIdAndUpdate } = require("../models/issue")
 const Issue = require("../models/issue")
 const User = require("../models/user")
 const { validatingFields, update_issue, update_issue_helper } = require("../services/user.services")
@@ -211,8 +212,17 @@ const assignIssue = async (req, res, next) => {
 
 const updateStatus = async (req, res, next) => {
     try {
-        const { _id } = req.body
-        const issueData = await Issue.findById(_id)
+        const issueData = await Issue.findById(req.body.id)
+        if(!Status.includes(req.body.status)){
+            throw new Error("Choose only from them 'unAssigned','NotStarted','inProgress','Completed'", {
+                cause: { status: 404 }
+            })
+        }else{
+            const updateIssue = await Issue.findByIdAndUpdate(_id, { status: req.body.status }, {
+                new: true, runValidators: true
+            });
+            update_issue_helper(updateIssue, res)
+        }
 
     } catch (error) {
 
@@ -273,11 +283,16 @@ const userIssues = async (req, res, next) => {
     try {
         const issues = await Issue.find({ createdBy: req.user._id })
         if (!issues) {
-            throw new Error("No issue created yet..", {
+            throw new Error("something went wrong please try again later", {
                 cause: { status: 404 }
             })
         }
         else {
+            if(issues==[]){
+                throw new Error("No issue created yet..", {
+                    cause: { status: 200 }
+                })
+            }
             res.status(201).json({
                 success: true,
                 data: issues
@@ -289,6 +304,26 @@ const userIssues = async (req, res, next) => {
 }
 
 const userAssignedIssues = async (req, res, next) => {
-
+    try {
+        const issues = await Issue.find({ assignedTo: req.user._id })
+        if (!issues) {
+            throw new Error("something went wrong please try again later", {
+                cause: { status: 404 }
+            })
+        }
+        else {
+            if(issues==""){
+                throw new Error("No issue assigned yet..", {
+                    cause: { status: 200 }
+                })
+            }
+            res.status(201).json({
+                success: true,
+                data: issues
+            })
+        }
+    } catch (error) {
+        next(error)
+    }
 }
 module.exports = { Login, createIssue, updateIssue, getIssue, getIssueById, deleteIssue, assignIssue, updateStatus, statusFilterCount, logout, userAssignedIssues, userIssues }

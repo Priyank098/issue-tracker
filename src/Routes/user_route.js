@@ -33,7 +33,7 @@ router.get('/statusFilterCount',auth,userController.statusFilterCount)
 router.post('/logout',auth,userController.logout)
 
 //get count of issue data status wise 
-router.post('/userIssues',auth,userController.userIssues)
+router.get('/userIssues',auth,userController.userIssues)
 
 //get count of issue data status wise 
 router.get('/userAssignedIssues',auth,userController.userAssignedIssues)
