@@ -259,7 +259,7 @@ const logout = async(req,res,next) =>{
         if(!await req.user.save()){
             throw new Error("something went wrong please try again later")
         }
-        res.status(201).json({
+        res.status(200).json({
             success:true
         })
     } catch (error) {

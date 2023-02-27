@@ -4,17 +4,32 @@ const Issue = require("../models/issue")
 
 const auth = async (req, res, next) => {
     try {
-        const token = req.header('Authorization').replace('Bearer ', '')
-        const decoded = jwt.verify(token, 'jidjfidjidijij')
-        // console.log(token);
-        const user = await User.findOne({ _id: decoded._id, token: token })
-        if (!user) {
-            throw new Error("please authenticate", {
-                cause: { status: 400 }
-            })
+        if(req.body.token){
+            const token = req.body.token
+            const decoded = jwt.verify(token, 'jidjfidjidijij')
+            // console.log(token);
+            const user = await User.findOne({ _id: decoded._id, token: token })
+            if (!user) {
+                throw new Error("please authenticate", {
+                    cause: { status: 400 }
+                })
+            }
+            req.user = user
+            next()
+        }else{
+            const token = req.header('Authorization').replace('Bearer ', '')
+            const decoded = jwt.verify(token, 'jidjfidjidijij')
+            // console.log(token);
+            const user = await User.findOne({ _id: decoded._id, token: token })
+            if (!user) {
+                throw new Error("please authenticate", {
+                    cause: { status: 400 }
+                })
+            }
+            req.user = user
+            next()
         }
-        req.user = user
-        next()
+       
     } catch (error) {
         next(error)
     }
