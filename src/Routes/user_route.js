@@ -29,6 +29,9 @@ router.post('/updateStatus',auth,isAssigned,userController.updateStatus)
 //get count of issue data status wise 
 router.get('/statusFilterCount',auth,userController.statusFilterCount)
 
+//get count of issue data status wise 
+router.post('/logout',auth,userController.logout)
+
 
 
 module.exports = router;

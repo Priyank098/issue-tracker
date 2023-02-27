@@ -219,7 +219,52 @@ const updateStatus = async (req, res, next) => {
     }
 }
 
-const statusFilterCount = (req,res,next)=>{
-   
+const statusFilterCount = async (req, res, next) => {
+    let unAssignedCount=0, assignedCount=0, inProgressCount=0, completedCount=0
+    
+    try {
+        const allIssuesop = await Issue.find({createdAt: {
+            $gte: new Date(new Date() - 7 * 60 * 60 * 24 * 1000)
+        }})
+        const allIssues = await Issue.find()
+        allIssues.map((issue) => {
+            console.log(issue.status);
+            if (issue.status == Status.values[0])
+                unAssignedCount += 1
+            else if (issue.status == Status.values[1])
+                assignedCount += 1
+            else if (issue.status == Status.values[2])
+                inProgressCount += 1
+            else if (issue.status == Status.values[3])
+                completedCount += 1
+        })
+        res.status(201).json({
+            success: true,
+            mainData:allIssuesop,
+            data: {
+                unAssignedCount: unAssignedCount,
+                assignedCount: assignedCount,
+                inProgressCount: inProgressCount,
+                completedCount: completedCount
+            }
+        })
+    } catch (error) {
+        next(error)
+    }
 }
-module.exports = { Login, createIssue, updateIssue, getIssue, getIssueById, deleteIssue, assignIssue, updateStatus,statusFilterCount }
+
+const logout = async(req,res,next) =>{
+    try {
+        req.user.token = ""
+        if(!await req.user.save()){
+            throw new Error("something went wrong please try again later")
+        }
+        res.status(201).json({
+            success:true
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
+module.exports = { Login, createIssue, updateIssue, getIssue, getIssueById, deleteIssue, assignIssue, updateStatus, statusFilterCount,logout }
