@@ -212,19 +212,29 @@ const assignIssue = async (req, res, next) => {
 
 const updateStatus = async (req, res, next) => {
     try {
-        if(!Status.includes(req.body.status)){
+        if (!Status.values.includes(req.body.status)) {
             throw new Error("Choose only from them 'unAssigned','NotStarted','inProgress','Completed'", {
                 cause: { status: 404 }
             })
-        }else{
-            const updateIssue = await Issue.findByIdAndUpdate(_id, { status: req.body.status }, {
+        }
+        if (req.body.status == Status.values[0]) {
+            const issueData = await Issue.findById(req.body._id)
+            const userData = await User.findById(issueData.assignedTo)
+            const updateIssue = await Issue.findByIdAndUpdate(req.body._id, { status: req.body.status }, {
+                new: true, runValidators: true
+            });
+            userData.updateCount()
+            update_issue_helper(updateIssue, res)
+        }
+        else {
+            const updateIssue = await Issue.findByIdAndUpdate(req.body._id, { status: req.body.status }, {
                 new: true, runValidators: true
             });
             update_issue_helper(updateIssue, res)
         }
 
     } catch (error) {
-       next(error)
+        next(error)
     }
 }
 
@@ -232,14 +242,10 @@ const statusFilterCount = async (req, res, next) => {
     let unAssignedCount = 0, assignedCount = 0, inProgressCount = 0, completedCount = 0
 
     try {
-        const allIssuesop = await Issue.find({
-            createdAt: {
-                $gte: new Date(new Date() - 7 * 60 * 60 * 24 * 1000)
-            }
-        })
+
         const allIssues = await Issue.find()
         allIssues.map((issue) => {
-            console.log(issue.status);
+            // console.log(issue.status);
             if (issue.status == Status.values[0])
                 unAssignedCount += 1
             else if (issue.status == Status.values[1])
@@ -251,7 +257,6 @@ const statusFilterCount = async (req, res, next) => {
         })
         res.status(201).json({
             success: true,
-            mainData: allIssuesop,
             data: {
                 unAssignedCount: unAssignedCount,
                 assignedCount: assignedCount,
@@ -287,7 +292,7 @@ const userIssues = async (req, res, next) => {
             })
         }
         else {
-            if(issues==[]){
+            if (issues == []) {
                 throw new Error("No issue created yet..", {
                     cause: { status: 200 }
                 })
@@ -311,7 +316,7 @@ const userAssignedIssues = async (req, res, next) => {
             })
         }
         else {
-            if(issues==""){
+            if (issues == "") {
                 throw new Error("No issue assigned yet..", {
                     cause: { status: 200 }
                 })
@@ -325,4 +330,65 @@ const userAssignedIssues = async (req, res, next) => {
         next(error)
     }
 }
+
+// const barChart = async (req, res, next) => {
+//     try {
+//         var j=1
+//         var initial = {day1:[],day2:[],day3:[],day4:[],day5:[],day6:[],day7:[]}
+//         const allIssues = await Issue.find({
+//             createdAt: {
+//                 $gte: new Date(new Date() - 7 * 60 * 60 * 24 * 1000)
+//             }
+//         })
+//         var today = new Date()
+//         console.log(today);
+//         for(var i =0;i<allIssues.length;i++){
+//             var createdAt = allIssues[i].createdAt.toString().slice(0,15)
+//             if(today.toDateString() == createdAt ){
+//                 initial.day1.push(allIssues[i]._id)
+//             }else{
+//                 var yesterday = new Date(today)
+//               yesterday.setDate(yesterday.getDate()-j)
+//                 var previousDay = yesterday.toDateString()
+//                 if(previousDay==createdAt){
+//                     initial.day2.push(allIssues[i]._id)
+//                 }
+//                 j++;
+//             }
+//         }
+//         res.status(200).json({
+//             succes:true,
+//             data : initial
+//         })
+//     } catch (error) {
+//         next(error)
+//     }
+// }
+
+// const barChart = async (req, res, next) => {
+//     try {
+//         Issue.aggregate([
+//             // First Stage
+//             {
+//                 $match: { "createdAt": { $gte: new Date(new Date() - 7 * 60 * 60 * 24 * 1000) }
+//             },
+//             // Second Stage
+//             {
+//                 $group: {
+//                     _id: { $dateToString: { format: "%Y-%m-%d", date: "$date" } },
+//                     totalSaleAmount: { $sum: { $multiply: ["$price", "$quantity"] } },
+//                     averageQuantity: { $avg: "$quantity" },
+//                     count: { $sum: 1 }
+//                 }
+//             },
+//             // Third Stage
+//             {
+//                 $sort: { totalSaleAmount: -1 }
+//             }
+//         ])
+//     } catch (error) {
+
+//     }
+// }
+
 module.exports = { Login, createIssue, updateIssue, getIssue, getIssueById, deleteIssue, assignIssue, updateStatus, statusFilterCount, logout, userAssignedIssues, userIssues }

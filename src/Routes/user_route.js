@@ -24,7 +24,7 @@ router.delete('/deleteIssue/:id',auth,verifyUser,userController.deleteIssue)
 router.post('/assignIssue',auth,userController.assignIssue)
 
 //assign issue to user 
-router.post('/updateStatus',auth,isAssigned,userController.updateStatus)
+router.patch('/updateStatus',auth,isAssigned,userController.updateStatus)
 
 //get count of issue data status wise 
 router.get('/statusFilterCount',auth,userController.statusFilterCount)
@@ -37,6 +37,9 @@ router.get('/userIssues',auth,userController.userIssues)
 
 //get count of issue data status wise 
 router.get('/userAssignedIssues',auth,userController.userAssignedIssues)
+
+//get count of issue data status wise 
+// router.get('/barChart',auth,userController.barChart)
 
 
 

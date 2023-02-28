@@ -4,9 +4,8 @@ const Issue = require("../models/issue")
 
 const auth = async (req, res, next) => {
     try {
-        if(req.params.token){
-            console.log(req.params.token);
-            const token = req.params.token
+        if(req.body.token){
+            const token = req.body.token
             const decoded = jwt.verify(token, 'jidjfidjidijij')
             // console.log(token);
             const user = await User.findOne({ _id: decoded._id, token: token })
@@ -57,8 +56,8 @@ const verifyUser = async (req, res, next) => {
 const isAssigned = async (req, res, next) => {
 
     try {
-        const issueData = await Issue.findById(req.params.id)
-        if(issueData.assignedTo === req.user._id){
+        const issueData = await Issue.findById(req.body._id)
+        if(issueData.assignedTo.toString() === req.user._id.toString()){
             next()
         }else{
             throw new Error("Only assigned person can change the status of this issue", {

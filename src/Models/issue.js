@@ -28,6 +28,20 @@ const Priority = require("../utils/Priority")
         enum:Status,
         default: Status.values[0]
     },
+    comments: [{
+        comment: {
+            type: String,
+            required: true
+        },
+        name: {
+            type: String,
+            required: true
+        },
+        userId: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true
+        }
+    }],
    }, {
     timestamps: true
 });
