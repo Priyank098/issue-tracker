@@ -1,7 +1,7 @@
 const express = require('express');
 const error_middleware  = require('./middleware/error_middleware');
 require("dotenv").config({ path: `./src/env/${process.env.NODE_ENV}.env`});
-require("./config/database")
+require("./configs/database")
 const adminrouter = require("./route/admin_route")
 const userRouter = require("./route/user_route")
 
