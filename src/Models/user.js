@@ -1,39 +1,39 @@
-const mongoose =  require('mongoose');
+const mongoose = require('mongoose');
 const validator = require('validator')
 const bcrypt = require("bcryptjs")
 const jwt = require('jsonwebtoken')
-
- const userSchema = new mongoose.Schema({
-    name : {
+const issue = require("./issue")
+const userSchema = new mongoose.Schema({
+    name: {
         type: String,
-        required:true
+        required: true
     },
-    email : {
+    email: {
         type: String,
-        required:true
+        required: true
     },
-    password : {
+    password: {
         type: String,
-        required:true
+        required: true
     },
-    department : {
+    department: {
         type: String,
-        required:true
+        required: true
     },
-    isAdmin : {
+    isAdmin: {
         type: Boolean,
-        default:false
+        default: false
     },
-    assignedCount : {
+    assignedCount: {
         type: Number,
+        default: 0
     },
-    token:{
+    token: {
         type: String,
-    }, 
+    },
 }, {
     timestamps: true
-}
-);
+});
 
 userSchema.virtual('issues', {
     ref: 'Issues',
@@ -47,18 +47,19 @@ userSchema.pre("save", async function (next) {
         next();
     }
 })
-userSchema.methods.updateCount = async function (){
+userSchema.methods.updateCount = async function () {
     const user = this
     const count = await issue.count({ assignedTo: user._id })
-    user.assignedCount = count
+    user.assignedCount = count;
     await user.save()
     return true
 }
+
 userSchema.methods.generateAuthToken = async function () {
     const user = this
     const token = jwt.sign({ _id: user._id.toString() }, "jidjfidjidijij")
-    
-    user.token = token 
+
+    user.token = token
     await user.save()
 
     return token
