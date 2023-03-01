@@ -3,9 +3,14 @@ const bcrypt = require('bcryptjs')
 const mongoose = require('mongoose')
 
 const createUser =  async (req,res,next) => {
-    //const {email} = req.body
+    const {email,password,name,department} = req.body
     try{ 
-        const userFound = await User.findOne({ email: req.body.email });
+        if(!name || !email || !password || !department){
+            throw new Error("All the fields should be valid", {
+                   cause: { status: 400 }
+               })
+       }
+        const userFound = await User.findOne({ email: email });
         if (userFound)
             throw new Error("Email already found", {
                 cause: { status: 400 }
@@ -17,7 +22,7 @@ const createUser =  async (req,res,next) => {
         res.status(200).json(user)
 
        } catch (error) {
-          next(error)
+           next(error)
     }
 }
 
@@ -34,7 +39,6 @@ const getUser = async (req, res, next) => {
     } catch (error) {
         next(error)
     }
-
 }
 
 const getUserById = async (req, res, next) => {
@@ -54,7 +58,21 @@ const getUserById = async (req, res, next) => {
 }
 
 const updateUser = async (req, res, next) => {
+    const updates = Object.keys(req.body)
+    const allowedUpdates = ['name', 'email', 'department']
+    const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
+    const {email,name,department} = req.body
     try{
+        if (!isValidOperation) {
+            throw new Error("Invaid Updates", {
+                cause: { status: 404 }
+            })
+        }
+        if(!name || !email || !department){
+            throw new Error("All the fields should be valid", {
+                   cause: { status: 400 }
+               })
+       }
         const _id = req.params.id
         const updateUser = await User.findByIdAndUpdate(_id, req.body,{
             new: true
@@ -89,6 +107,5 @@ const deleteUser = async (req, res, next) => {
     }
  }
     
-        
-            
+               
 module.exports= {createUser, getUser, getUserById, updateUser, deleteUser}

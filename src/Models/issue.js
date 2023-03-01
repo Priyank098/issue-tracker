@@ -28,6 +28,10 @@ const Priority = require("../utils/Priority")
         enum:Status,
         default: Status.values[0]
     },
+    date:{
+        type:String,
+        
+    },
     comments: [{
         comment: {
             type: String,

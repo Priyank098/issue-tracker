@@ -1,4 +1,3 @@
-const { findByIdAndUpdate } = require("../models/issue")
 const Issue = require("../models/issue")
 const User = require("../models/user")
 const { validatingFields, update_issue, update_issue_helper } = require("../services/user.services")
@@ -36,6 +35,7 @@ const Login = async (req, res, next) => {
 
 const createIssue = async (req, res, next) => {
     const { title, description, priority } = req.body
+    const date = new Date()
     try {
         validatingFields(title, description, priority)
         if (req.body.assignedTo) {
@@ -43,6 +43,7 @@ const createIssue = async (req, res, next) => {
             const issue = await new Issue({
                 ...req.body,
                 createdBy: req.user._id,
+                date: `${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`,
                 status: Status.values[1]
             })
             if (!await issue.save())
@@ -57,7 +58,8 @@ const createIssue = async (req, res, next) => {
         } else {
             const issue = await new Issue({
                 ...req.body,
-                createdBy: req.user._id
+                createdBy: req.user._id,
+                date: `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`,
             })
             if (!await issue.save())
                 throw new Error("Data not inserted")
@@ -331,64 +333,26 @@ const userAssignedIssues = async (req, res, next) => {
     }
 }
 
-// const barChart = async (req, res, next) => {
-//     try {
-//         var j=1
-//         var initial = {day1:[],day2:[],day3:[],day4:[],day5:[],day6:[],day7:[]}
-//         const allIssues = await Issue.find({
-//             createdAt: {
-//                 $gte: new Date(new Date() - 7 * 60 * 60 * 24 * 1000)
-//             }
-//         })
-//         var today = new Date()
-//         console.log(today);
-//         for(var i =0;i<allIssues.length;i++){
-//             var createdAt = allIssues[i].createdAt.toString().slice(0,15)
-//             if(today.toDateString() == createdAt ){
-//                 initial.day1.push(allIssues[i]._id)
-//             }else{
-//                 var yesterday = new Date(today)
-//               yesterday.setDate(yesterday.getDate()-j)
-//                 var previousDay = yesterday.toDateString()
-//                 if(previousDay==createdAt){
-//                     initial.day2.push(allIssues[i]._id)
-//                 }
-//                 j++;
-//             }
-//         }
-//         res.status(200).json({
-//             succes:true,
-//             data : initial
-//         })
-//     } catch (error) {
-//         next(error)
-//     }
-// }
+const barChart = async (req, res, next) => {
+    var dayWiseData = []
+    try {
+        const allIssues = await Issue.aggregate([
+            { $match: { createdAt: { $gte: new Date(new Date() - 7 * 60 * 60 * 24 * 1000) } } },
+            { $group: { _id: "$date", count: { $sum: 1 }, data: { $push: { id: "$_id", date: "$date" } } } }
+        ])
+        for (var i = 0; i < allIssues.length - 1; i++) {
+            dayWiseData[i] = dayWiseData.push(allIssues[i].count)
+        }
 
-// const barChart = async (req, res, next) => {
-//     try {
-//         Issue.aggregate([
-//             // First Stage
-//             {
-//                 $match: { "createdAt": { $gte: new Date(new Date() - 7 * 60 * 60 * 24 * 1000) }
-//             },
-//             // Second Stage
-//             {
-//                 $group: {
-//                     _id: { $dateToString: { format: "%Y-%m-%d", date: "$date" } },
-//                     totalSaleAmount: { $sum: { $multiply: ["$price", "$quantity"] } },
-//                     averageQuantity: { $avg: "$quantity" },
-//                     count: { $sum: 1 }
-//                 }
-//             },
-//             // Third Stage
-//             {
-//                 $sort: { totalSaleAmount: -1 }
-//             }
-//         ])
-//     } catch (error) {
+        res.status(200).json({
+            succes: true,
+            data: dayWiseData
 
-//     }
-// }
+        })
+    } catch (error) {
+        next(error)
+    }
+}
 
-module.exports = { Login, createIssue, updateIssue, getIssue, getIssueById, deleteIssue, assignIssue, updateStatus, statusFilterCount, logout, userAssignedIssues, userIssues }
+
+module.exports = { Login, createIssue, updateIssue, getIssue, getIssueById, deleteIssue, assignIssue, updateStatus, statusFilterCount, logout, userAssignedIssues, userIssues, barChart }

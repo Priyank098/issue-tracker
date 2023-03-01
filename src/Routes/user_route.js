@@ -6,40 +6,40 @@ const {auth,verifyUser,isAssigned} = require("../middleware/auth")
 router.post('/login',userController.Login) 
 
 //create user 
-router.post('/createIssue',auth,userController.createIssue)
+router.post('/createIssue',auth(),userController.createIssue)
 
 //update Issue 
-router.patch('/updateIssue/:id',auth,verifyUser,userController.updateIssue)
+router.patch('/updateIssue/:id',auth(),verifyUser,userController.updateIssue)
 
 //view all issue 
-router.get('/viewIssue',auth,userController.getIssue)
+router.get('/viewIssue',auth(),userController.getIssue)
 
 //view Issue by userid
-router.get('/viewIssueById/:id',auth,userController.getIssueById)
+router.get('/viewIssueById/:id',auth(),userController.getIssueById)
 
 //delete Issue 
-router.delete('/deleteIssue/:id',auth,verifyUser,userController.deleteIssue)
+router.delete('/deleteIssue/:id',auth(),verifyUser,userController.deleteIssue)
 
 //assign issue to user 
-router.post('/assignIssue',auth,userController.assignIssue)
+router.post('/assignIssue',auth(),userController.assignIssue)
 
 //assign issue to user 
-router.patch('/updateStatus',auth,isAssigned,userController.updateStatus)
+router.patch('/updateStatus',auth(),isAssigned,userController.updateStatus)
 
 //get count of issue data status wise 
-router.get('/statusFilterCount',auth,userController.statusFilterCount)
+router.get('/statusFilterCount',auth(),userController.statusFilterCount)
 
 //get count of issue data status wise 
-router.post('/logout',auth,userController.logout)
+router.post('/logout',auth(),userController.logout)
 
 //get count of issue data status wise 
-router.get('/userIssues',auth,userController.userIssues)
+router.get('/userIssues',auth(),userController.userIssues)
 
 //get count of issue data status wise 
-router.get('/userAssignedIssues',auth,userController.userAssignedIssues)
+router.get('/userAssignedIssues',auth(),userController.userAssignedIssues)
 
 //get count of issue data status wise 
-// router.get('/barChart',auth,userController.barChart)
+router.get('/barChart',auth(),userController.barChart)
 
 
 
