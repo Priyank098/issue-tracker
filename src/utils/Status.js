@@ -1,8 +1,6 @@
  const Status = {
-  unAssigned : 'unAssigned',
-  NotStarted : 'NotStarted',
-  inProgress : 'inProgress',
-  Completed :'Completed',
+  values:['unAssigned','Assigned','inProgress','Completed'],
+  message:"Choose only from them 'unAssigned','NotStarted','inProgress','Completed'"
 }
 
 module.exports = Status

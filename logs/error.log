@@ -1,0 +1,49 @@
+error:  Mar-01-2023 11:17:53: Error : Cannot read properties of undefined (reading 'replace'),Request : /api/createUser,stack:TypeError: Cannot read properties of undefined (reading 'replace')
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:34:58
+    at Layer.handle [as handle_request] (C:\Users\abc\issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\abc\issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\abc\issue-tracker\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\abc\issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\abc\issue-tracker\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\abc\issue-tracker\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\abc\issue-tracker\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\abc\issue-tracker\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\abc\issue-tracker\node_modules\express\lib\router\index.js:47:12)
+error:  Mar-01-2023 11:19:53: Error : Cannot read properties of undefined (reading 'replace'),Request : /api/createUser,stack:TypeError: Cannot read properties of undefined (reading 'replace')
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:34:58
+    at Layer.handle [as handle_request] (C:\Users\abc\issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\abc\issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\abc\issue-tracker\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\abc\issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\abc\issue-tracker\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\abc\issue-tracker\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\abc\issue-tracker\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\abc\issue-tracker\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\abc\issue-tracker\node_modules\express\lib\router\index.js:47:12)
+error:  Mar-01-2023 11:20:22: Error : Email already found,Request : /api/createUser,stack:Error: Email already found
+    at createUser (C:\Users\abc\issue-tracker\src\Controllers\admin_controller.js:15:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-01-2023 11:21:24: Error : Email already found,Request : /api/createUser,stack:Error: Email already found
+    at createUser (C:\Users\abc\issue-tracker\src\Controllers\admin_controller.js:15:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-01-2023 11:23:19: Error : Email already found,Request : /api/createUser,stack:Error: Email already found
+    at createUser (C:\Users\abc\issue-tracker\src\Controllers\admin_controller.js:15:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-01-2023 11:23:43: Error : Email already found,Request : /api/createUser,stack:Error: Email already found
+    at createUser (C:\Users\abc\issue-tracker\src\Controllers\admin_controller.js:15:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-01-2023 11:25:37: Error : Email already found,Request : /api/createUser,stack:Error: Email already found
+    at createUser (C:\Users\abc\issue-tracker\src\Controllers\admin_controller.js:15:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-01-2023 11:34:22: Error : Access Denied!!,Request : /api/createUser,stack:Error: Access Denied!!
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:47:31
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-01-2023 11:36:58: Error : Access Denied!!,Request : /api/createUser,stack:Error: Access Denied!!
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:48:35
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-01-2023 11:38:42: Error : Access Denied!!,Request : /api/createUser,stack:Error: Access Denied!!
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:48:35
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-01-2023 11:40:03: Error : Email already found,Request : /api/createUser,stack:Error: Email already found
+    at createUser (C:\Users\abc\issue-tracker\src\Controllers\admin_controller.js:15:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
