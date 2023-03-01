@@ -38,18 +38,8 @@ const jwt = require('jsonwebtoken')
 userSchema.virtual('issues', {
     ref: 'Issues',
     localField: '_id',
-    foreignField: 'owner'
+    foreignField: 'createdBy'
 })
-
-// userSchema.methods.toJSON = function () {
-//     const user = this
-//     const userObject = user.toObject()
-
-//     delete userObject.token
-
-//     return userObject
-// }
-
 
 userSchema.pre("save", async function (next) {
     if (this.isModified("password")) {
@@ -57,10 +47,17 @@ userSchema.pre("save", async function (next) {
         next();
     }
 })
+userSchema.methods.updateCount = async function (){
+    const user = this
+    const count = await issue.count({ assignedTo: user._id })
+    user.assignedCount = count
+    await user.save()
+    return true
+}
 userSchema.methods.generateAuthToken = async function () {
     const user = this
     const token = jwt.sign({ _id: user._id.toString() }, "jidjfidjidijij")
-
+    
     user.token = token 
     await user.save()
 
@@ -71,6 +68,7 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
 }
 module.exports = mongoose.models.Users || mongoose.model('Users', userSchema);
-// module.exports =  mongoose.model('user', userSchema)
 
-// module.exports = User
+//module.exports = User
+
+

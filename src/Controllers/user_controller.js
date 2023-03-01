@@ -34,6 +34,7 @@ const Login = async (req, res, next) => {
 }
 
 const createIssue = async (req, res, next) => {
+    const _id = req.params.id
     const issue = await new Issue({
         ...req.body,
         createdBy: req.user._id
