@@ -47,3 +47,338 @@ error:  Mar-01-2023 11:38:42: Error : Access Denied!!,Request : /api/createUser,
 error:  Mar-01-2023 11:40:03: Error : Email already found,Request : /api/createUser,stack:Error: Email already found
     at createUser (C:\Users\abc\issue-tracker\src\Controllers\admin_controller.js:15:19)
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-01-2023 12:28:55: Error : Cannot read properties of undefined (reading 'replace'),Request : /api/deleteUser/63fc7972e01e2f5a666dac54,stack:TypeError: Cannot read properties of undefined (reading 'replace')
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:36:58
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:284:15
+    at param (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:365:14)
+    at param (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:376:14)
+    at Function.process_params (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:421:3)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:280:10)
+error:  Mar-01-2023 12:30:14: Error : Cannot read properties of undefined (reading 'replace'),Request : /api/deleteUser/63fc7972e01e2f5a666dac54,stack:TypeError: Cannot read properties of undefined (reading 'replace')
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:36:58
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:284:15
+    at param (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:365:14)
+    at param (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:376:14)
+    at Function.process_params (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:421:3)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:280:10)
+error:  Mar-01-2023 12:31:05: Error : Cannot read properties of undefined (reading 'replace'),Request : /api/deleteUser/63fc7972e01e2f5a666dac54,stack:TypeError: Cannot read properties of undefined (reading 'replace')
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:36:58
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:284:15
+    at param (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:365:14)
+    at param (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:376:14)
+    at Function.process_params (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:421:3)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:280:10)
+error:  Mar-01-2023 12:34:07: Error : Cannot read properties of undefined (reading 'replace'),Request : /api/deleteUser/63fc7972e01e2f5a666dac54,stack:TypeError: Cannot read properties of undefined (reading 'replace')
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:36:58
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:284:15
+    at param (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:365:14)
+    at param (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:376:14)
+    at Function.process_params (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:421:3)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:280:10)
+error:  Mar-01-2023 12:36:46: Error : Unexpected token } in JSON at position 161,Request : /api/createUser,stack:SyntaxError: Unexpected token } in JSON at position 161
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\body-parser\lib\types\json.js:89:19)
+    at C:\Users\antino lab\Desktop\Issue-tracker\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:204:9)
+    at invokeCallback (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:231:16)
+    at done (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:220:7)
+    at IncomingMessage.onEnd (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:280:7)
+    at IncomingMessage.emit (node:events:513:28)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+error:  Mar-01-2023 12:38:47: Error : Unexpected token } in JSON at position 161,Request : /api/createUser,stack:SyntaxError: Unexpected token } in JSON at position 161
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\body-parser\lib\types\json.js:89:19)
+    at C:\Users\antino lab\Desktop\Issue-tracker\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:204:9)
+    at invokeCallback (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:231:16)
+    at done (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:220:7)
+    at IncomingMessage.onEnd (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:280:7)
+    at IncomingMessage.emit (node:events:513:28)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+error:  Mar-01-2023 12:38:58: Error : Cannot read properties of undefined (reading 'replace'),Request : /api/createUser,stack:TypeError: Cannot read properties of undefined (reading 'replace')
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:36:58
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:47:12)
+error:  Mar-01-2023 12:40:08: Error : Cannot read properties of undefined (reading 'replace'),Request : /api/createUser,stack:TypeError: Cannot read properties of undefined (reading 'replace')
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:36:58
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:47:12)
+error:  Mar-01-2023 12:43:33: Error : Cannot read properties of undefined (reading 'replace'),Request : /api/createUser,stack:TypeError: Cannot read properties of undefined (reading 'replace')
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:36:58
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:47:12)
+error:  Mar-01-2023 12:47:56: Error : Unexpected token   in JSON at position 40,Request : /api/Login,stack:SyntaxError: Unexpected token   in JSON at position 40
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\body-parser\lib\types\json.js:89:19)
+    at C:\Users\antino lab\Desktop\Issue-tracker\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:204:9)
+    at invokeCallback (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:231:16)
+    at done (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:220:7)
+    at IncomingMessage.onEnd (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:280:7)
+    at IncomingMessage.emit (node:events:513:28)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+error:  Mar-01-2023 12:55:39: Error : Email or password should be valid,Request : /api/Login,stack:Error: Email or password should be valid
+    at Login (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:10:19)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:47:12)
+error:  Mar-01-2023 13:03:08: Error : Cannot read properties of undefined (reading 'replace'),Request : /api/deleteUser/63feff5bd1f22af1ca45e4a5,stack:TypeError: Cannot read properties of undefined (reading 'replace')
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:36:58
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:284:15
+    at param (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:365:14)
+    at param (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:376:14)
+    at Function.process_params (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:421:3)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:280:10)
+error:  Mar-01-2023 13:06:35: Error : Unexpected token   in JSON at position 41,Request : /api/Login,stack:SyntaxError: Unexpected token   in JSON at position 41
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\body-parser\lib\types\json.js:89:19)
+    at C:\Users\antino lab\Desktop\Issue-tracker\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:204:9)
+    at invokeCallback (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:231:16)
+    at done (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:220:7)
+    at IncomingMessage.onEnd (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:280:7)
+    at IncomingMessage.emit (node:events:513:28)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+error:  Mar-01-2023 13:09:20: Error : Unexpected end of JSON input,Request : /api/Login,stack:SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>)
+    at createStrictSyntaxError (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\body-parser\lib\types\json.js:160:10)
+    at parse (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\body-parser\lib\types\json.js:83:15)
+    at C:\Users\antino lab\Desktop\Issue-tracker\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:204:9)
+    at invokeCallback (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:231:16)
+    at done (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:220:7)
+    at IncomingMessage.onEnd (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:280:7)
+    at IncomingMessage.emit (node:events:513:28)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+error:  Mar-01-2023 13:09:34: Error : Unexpected token   in JSON at position 40,Request : /api/Login,stack:SyntaxError: Unexpected token   in JSON at position 40
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\body-parser\lib\types\json.js:89:19)
+    at C:\Users\antino lab\Desktop\Issue-tracker\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:204:9)
+    at invokeCallback (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:231:16)
+    at done (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:220:7)
+    at IncomingMessage.onEnd (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:280:7)
+    at IncomingMessage.emit (node:events:513:28)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+error:  Mar-01-2023 13:11:23: Error : Unexpected token   in JSON at position 40,Request : /api/Login,stack:SyntaxError: Unexpected token   in JSON at position 40
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\body-parser\lib\types\json.js:89:19)
+    at C:\Users\antino lab\Desktop\Issue-tracker\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:204:9)
+    at invokeCallback (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:231:16)
+    at done (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:220:7)
+    at IncomingMessage.onEnd (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:280:7)
+    at IncomingMessage.emit (node:events:513:28)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+error:  Mar-01-2023 13:12:39: Error : Unexpected token   in JSON at position 46,Request : /api/Login,stack:SyntaxError: Unexpected token   in JSON at position 46
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\body-parser\lib\types\json.js:89:19)
+    at C:\Users\antino lab\Desktop\Issue-tracker\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:204:9)
+    at invokeCallback (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:231:16)
+    at done (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:220:7)
+    at IncomingMessage.onEnd (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:280:7)
+    at IncomingMessage.emit (node:events:513:28)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+error:  Mar-01-2023 13:17:04: Error : Unexpected token   in JSON at position 40,Request : /api/Login,stack:SyntaxError: Unexpected token   in JSON at position 40
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\body-parser\lib\types\json.js:89:19)
+    at C:\Users\antino lab\Desktop\Issue-tracker\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:204:9)
+    at invokeCallback (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:231:16)
+    at done (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:220:7)
+    at IncomingMessage.onEnd (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:280:7)
+    at IncomingMessage.emit (node:events:513:28)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+error:  Mar-01-2023 13:19:38: Error : Unexpected token   in JSON at position 40,Request : /api/Login,stack:SyntaxError: Unexpected token   in JSON at position 40
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\body-parser\lib\types\json.js:89:19)
+    at C:\Users\antino lab\Desktop\Issue-tracker\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:204:9)
+    at invokeCallback (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:231:16)
+    at done (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:220:7)
+    at IncomingMessage.onEnd (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\raw-body\index.js:280:7)
+    at IncomingMessage.emit (node:events:513:28)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+error:  Mar-01-2023 13:21:11: Error : Cannot read properties of undefined (reading 'replace'),Request : /api/deleteUser/63feff5bd1f22af1ca45e4a5,stack:TypeError: Cannot read properties of undefined (reading 'replace')
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:36:58
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:284:15
+    at param (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:365:14)
+    at param (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:376:14)
+    at Function.process_params (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:421:3)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:280:10)
+error:  Mar-01-2023 13:22:38: Error : Cannot read properties of undefined (reading 'replace'),Request : /api/deleteUser/63feff5bd1f22af1ca45e4a5,stack:TypeError: Cannot read properties of undefined (reading 'replace')
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:36:58
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:284:15
+    at param (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:365:14)
+    at param (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:376:14)
+    at Function.process_params (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:421:3)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:280:10)
+error:  Mar-01-2023 13:22:46: Error : Cannot read properties of undefined (reading 'replace'),Request : /api/deleteUser/63feff5bd1f22af1ca45e4a5,stack:TypeError: Cannot read properties of undefined (reading 'replace')
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:36:58
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:284:15
+    at param (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:365:14)
+    at param (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:376:14)
+    at Function.process_params (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:421:3)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\index.js:280:10)
+error:  Mar-01-2023 13:27:20: Error : Invaid Updates,Request : /api/updateUser/63fc7972e01e2f5a666dac54,stack:Error: Invaid Updates
+    at updateUser (C:\Users\antino lab\Desktop\Issue-tracker\src\Controllers\admin_controller.js:76:19)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:48:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-01-2023 13:28:18: Error : Invaid Updates,Request : /api/updateUser/63fc7972e01e2f5a666dac54,stack:Error: Invaid Updates
+    at updateUser (C:\Users\antino lab\Desktop\Issue-tracker\src\Controllers\admin_controller.js:76:19)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:48:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-01-2023 13:28:30: Error : Invaid Updates,Request : /api/updateUser/63fc7972e01e2f5a666dac54,stack:Error: Invaid Updates
+    at updateUser (C:\Users\antino lab\Desktop\Issue-tracker\src\Controllers\admin_controller.js:76:19)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:48:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-01-2023 13:30:03: Error : Invaid Updates,Request : /api/updateUser/63fc7972e01e2f5a666dac54,stack:Error: Invaid Updates
+    at updateUser (C:\Users\antino lab\Desktop\Issue-tracker\src\Controllers\admin_controller.js:76:19)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:48:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-01-2023 13:30:23: Error : Invaid Updates,Request : /api/updateUser/63fc7972e01e2f5a666dac54,stack:Error: Invaid Updates
+    at updateUser (C:\Users\antino lab\Desktop\Issue-tracker\src\Controllers\admin_controller.js:76:19)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:48:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 12:15:30: Error : Email not found,Request : /api/Login,stack:Error: Email not found
+    at Login (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:15:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 12:16:21: Error : Email not found,Request : /api/Login,stack:Error: Email not found
+    at Login (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:15:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 12:17:13: Error : please authenticate,Request : /api/createUser,stack:Error: please authenticate
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:40:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 12:20:22: Error : please authenticate,Request : /api/viewuserById/63ff42acba3186a2b715ce39,stack:Error: please authenticate
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:40:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 12:23:04: Error : please authenticate,Request : /api/viewuserById/63ff4015ba3186a2b715ce20,stack:Error: please authenticate
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:40:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 12:23:47: Error : Access Denied!!,Request : /api/viewuserById/63ff4015ba3186a2b715ce20,stack:Error: Access Denied!!
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:50:35
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 12:25:08: Error : Access Denied!!,Request : /api/viewuserById/63ff4061ba3186a2b715ce28,stack:Error: Access Denied!!
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:50:35
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 12:37:43: Error : sendWelcomeEmail is not defined,Request : /api/createUser,stack:ReferenceError: sendWelcomeEmail is not defined
+    at createUser (C:\Users\antino lab\Desktop\Issue-tracker\src\Controllers\admin_controller.js:14:28)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 12:39:32: Error : sendWelcomeEmail is not defined,Request : /api/createUser,stack:ReferenceError: sendWelcomeEmail is not defined
+    at createUser (C:\Users\antino lab\Desktop\Issue-tracker\src\Controllers\admin_controller.js:13:27)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:48:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 12:52:37: Error : sendWelcomeEmail is not defined,Request : /api/createUser,stack:ReferenceError: sendWelcomeEmail is not defined
+    at createUser (C:\Users\antino lab\Desktop\Issue-tracker\src\Controllers\admin_controller.js:13:27)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:48:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 12:55:34: Error : passowrd is not defined,Request : /api/createUser,stack:ReferenceError: passowrd is not defined
+    at createUser (C:\Users\antino lab\Desktop\Issue-tracker\src\Controllers\admin_controller.js:14:51)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:48:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 12:55:55: Error : passowrd is not defined,Request : /api/createUser,stack:ReferenceError: passowrd is not defined
+    at createUser (C:\Users\antino lab\Desktop\Issue-tracker\src\Controllers\admin_controller.js:14:51)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:48:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 12:57:06: Error : passowrd is not defined,Request : /api/createUser,stack:ReferenceError: passowrd is not defined
+    at createUser (C:\Users\antino lab\Desktop\Issue-tracker\src\Controllers\admin_controller.js:14:51)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:48:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 12:58:26: Error : passowrd is not defined,Request : /api/createUser,stack:ReferenceError: passowrd is not defined
+    at createUser (C:\Users\antino lab\Desktop\Issue-tracker\src\Controllers\admin_controller.js:14:51)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:48:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 15:28:41: Error : please authenticate,Request : /api/createUser,stack:Error: please authenticate
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:40:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)

@@ -1,6 +1,7 @@
 const User = require("../Models/user")
 const bcrypt = require('bcryptjs')
 const mongoose = require('mongoose')
+const {sendWelcomeEmail} = require('../utils/mail')
 
 const createUser =  async (req,res,next) => {
     const {email,password,name,department} = req.body
@@ -10,7 +11,9 @@ const createUser =  async (req,res,next) => {
                    cause: { status: 400 }
                })
        }
-        const userFound = await User.findOne({ email: email });
+       const createUser = sendWelcomeEmail({email,password})
+           
+       const userFound = await User.findOne({ email: email })
         if (userFound)
             throw new Error("Email already found", {
                 cause: { status: 400 }
@@ -19,8 +22,11 @@ const createUser =  async (req,res,next) => {
          if (!await user.save()){
           throw new Error("User not created")
          }
-        res.status(200).json(user)
-
+        res.status(200).json({
+            success: true,
+            data: user
+        })
+        
        } catch (error) {
            next(error)
     }
@@ -34,7 +40,10 @@ const getUser = async (req, res, next) => {
                 cause: { status: 404 }
             })
         }
-        res.status(200).json(viewUser)
+        res.status(200).json({ 
+            success: true,
+            data: viewUser
+        })
 
     } catch (error) {
         next(error)
@@ -49,7 +58,10 @@ const getUserById = async (req, res, next) => {
                 cause: { status: 404 }
             })
         }
-        res.status(200).json(viewUserById)
+        res.status(200).json({
+            success: true,
+            data: viewUserById
+        })
 
     } catch (error) {
         next(error)
@@ -82,7 +94,10 @@ const updateUser = async (req, res, next) => {
                 cause: { status: 404 }
             })
         }
-        res.status(200).json(updateUser)
+        res.status(200).json({
+            success: true,
+            data: updateUser
+        })
       
     } catch (error) {
         next(error)
@@ -99,7 +114,10 @@ const deleteUser = async (req, res, next) => {
                     cause: { status: 404 }
                 })
             }
-            res.status(200).json(deleteUser)
+            res.status(200).json({
+                success: true,
+                data: deleteUser
+            })
           
     } catch (error) {
             console.log(error)
