@@ -158,21 +158,37 @@ const deleteIssue = async (req, res, next) => {
                 cause: { status: 404 }
             })
         }
-        const IssueData = await Issue.findById(req.params.id);
-        const assignUserData = await User.findById(IssueData.assignedTo)
+        const IssueData = await Issue.findById(req.params.id)
+        if(IssueData.status == Status.values[0]){
+            const deleteIssue = await Issue.findByIdAndDelete(req.params.id);
+            if (!deleteIssue) {
+                throw new Error("Data not delete Please try again later", {
+                    cause: { status: 404 }
+                })
+            } else {
+                res.status(200).json({
+                    success: true,
+                    data: deleteIssue
+                })
+            }
+        }else{
+            const deleteIssue = await Issue.findByIdAndDelete(req.params.id);
+            const assignUserData = await User.findById(deleteIssue.assignedTo)
         // console.log(assignUserData);
         assignUserData.updateCount()
-        const deleteIssue = await Issue.findByIdAndDelete(req.params.id);
-        if (!deleteIssue) {
-            throw new Error("Data not delete Please try again later", {
-                cause: { status: 404 }
-            })
-        } else {
-            res.status(200).json({
-                success: true,
-                data: deleteIssue
-            })
+            if (!deleteIssue) {
+                throw new Error("Data not delete Please try again later", {
+                    cause: { status: 404 }
+                })
+            } else {
+                res.status(200).json({
+                    success: true,
+                    data: deleteIssue
+                })
+            }
         }
+        
+       
     } catch (error) {
         next(error)
     }
