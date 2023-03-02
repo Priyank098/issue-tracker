@@ -158,21 +158,37 @@ const deleteIssue = async (req, res, next) => {
                 cause: { status: 404 }
             })
         }
-        const IssueData = await Issue.findById(req.params.id);
-        const assignUserData = await User.findById(IssueData.assignedTo)
-        // console.log(assignUserData);
-        assignUserData.updateCount()
-        const deleteIssue = await Issue.findByIdAndDelete(req.params.id);
-        if (!deleteIssue) {
-            throw new Error("Data not delete Please try again later", {
-                cause: { status: 404 }
-            })
+        const IssueData = await Issue.findById(req.params.id)
+        if (IssueData.status == Status.values[0]) {
+            const deleteIssue = await Issue.findByIdAndDelete(req.params.id);
+            if (!deleteIssue) {
+                throw new Error("Data not delete Please try again later", {
+                    cause: { status: 404 }
+                })
+            } else {
+                res.status(200).json({
+                    success: true,
+                    data: deleteIssue
+                })
+            }
         } else {
-            res.status(200).json({
-                success: true,
-                data: deleteIssue
-            })
+            const deleteIssue = await Issue.findByIdAndDelete(req.params.id);
+            const assignUserData = await User.findById(deleteIssue.assignedTo)
+            // console.log(assignUserData);
+            assignUserData.updateCount()
+            if (!deleteIssue) {
+                throw new Error("Data not delete Please try again later", {
+                    cause: { status: 404 }
+                })
+            } else {
+                res.status(200).json({
+                    success: true,
+                    data: deleteIssue
+                })
+            }
         }
+
+
     } catch (error) {
         next(error)
     }
@@ -345,7 +361,7 @@ const barChart = async (req, res, next) => {
         ])
         console.log(allIssues[0].count);
         for (i = 0; i < allIssues.length; i++) {
-            dayWiseData.push(allIssues[i].count)
+             dayWiseData.push(allIssues[i].count)
         }
 
         res.status(200).json({
@@ -359,9 +375,26 @@ const barChart = async (req, res, next) => {
 }
 
 const addComment = async (req, res, next) => {
-    const { userId,userName, issueId, comment } = req.body;
-    const issueData = await Issue.findById(issueId)
-    issueData.comments = issueData.comments.concat({comment:comment,name:userName,userId:userId})
+    const {issueId, comment } = req.body;
+    const { _id, name} = req.user
+    try {
+        const issueData = await Issue.findById(issueId)
+        issueData.comments = issueData.comments.concat({ comment: comment, name: name, userId: _id })
+        
+        if ( await issueData.save()) {
+            res.status(200).json({
+                success: true,
+                data: issueData
+            })
+        } else {
+            throw new Error("something went wrong please try again later")
+        }
+    } catch (error) {
+        next(error)
+    }
+}
+const isTokenValid = async(req,res,next) =>{
+    res.status(200).json({success:true})
 }
 
-module.exports = { Login, createIssue, updateIssue, getIssue, getIssueById, deleteIssue, assignIssue, updateStatus, statusFilterCount, logout, userAssignedIssues, userIssues, barChart, addComment }
+module.exports = { Login, createIssue, updateIssue, getIssue, getIssueById, deleteIssue, assignIssue, updateStatus, statusFilterCount, logout, userAssignedIssues, userIssues, barChart, addComment,isTokenValid }

@@ -42,8 +42,8 @@ router.get('/userAssignedIssues',auth(),userController.userAssignedIssues)
 router.get('/barChart',auth(),userController.barChart)
 
 //get count of issue data status wise 
-router.get('/addComment',auth(),userController.addComment)
+router.post('/addComment',auth(),userController.addComment)
 
-
+router.get('/isTokenValid',auth(),userController.isTokenValid)
 
 module.exports = router;
