@@ -43,7 +43,7 @@ const createIssue = async (req, res, next) => {
             const issue = await new Issue({
                 ...req.body,
                 createdBy: req.user._id,
-                date: `${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`,
+                date: `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`,
                 status: Status.values[1]
             })
             if (!await issue.save())
@@ -158,9 +158,11 @@ const deleteIssue = async (req, res, next) => {
                 cause: { status: 404 }
             })
         }
-        const deleteIssue = await Issue.findByIdAndDelete(req.params.id);
-        const assignUserData = await User.findById(deleteIssue.assignedTo)
+        const IssueData = await Issue.findById(req.params.id);
+        const assignUserData = await User.findById(IssueData.assignedTo)
+        // console.log(assignUserData);
         assignUserData.updateCount()
+        const deleteIssue = await Issue.findByIdAndDelete(req.params.id);
         if (!deleteIssue) {
             throw new Error("Data not delete Please try again later", {
                 cause: { status: 404 }
@@ -335,13 +337,15 @@ const userAssignedIssues = async (req, res, next) => {
 
 const barChart = async (req, res, next) => {
     var dayWiseData = []
+    var i = 0;
     try {
         const allIssues = await Issue.aggregate([
             { $match: { createdAt: { $gte: new Date(new Date() - 7 * 60 * 60 * 24 * 1000) } } },
             { $group: { _id: "$date", count: { $sum: 1 }, data: { $push: { id: "$_id", date: "$date" } } } }
         ])
-        for (var i = 0; i < allIssues.length - 1; i++) {
-            dayWiseData[i] = dayWiseData.push(allIssues[i].count)
+        console.log(allIssues[0].count);
+        for (i = 0; i < allIssues.length; i++) {
+            dayWiseData.push(allIssues[i].count)
         }
 
         res.status(200).json({
@@ -354,5 +358,10 @@ const barChart = async (req, res, next) => {
     }
 }
 
+const addComment = async (req, res, next) => {
+    const { userId,userName, issueId, comment } = req.body;
+    const issueData = await Issue.findById(issueId)
+    issueData.comments = issueData.comments.concat()
+}
 
-module.exports = { Login, createIssue, updateIssue, getIssue, getIssueById, deleteIssue, assignIssue, updateStatus, statusFilterCount, logout, userAssignedIssues, userIssues, barChart }
+module.exports = { Login, createIssue, updateIssue, getIssue, getIssueById, deleteIssue, assignIssue, updateStatus, statusFilterCount, logout, userAssignedIssues, userIssues, barChart, addComment }
