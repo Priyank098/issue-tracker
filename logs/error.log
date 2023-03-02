@@ -119,3 +119,6 @@ error:  Mar-02-2023 13:24:31: Error : res is not defined,Request : /api/isTokenV
 error:  Mar-02-2023 13:25:26: Error : please authenticate,Request : /api/isTokenValid,stack:Error: please authenticate
     at C:\Users\abc\issue-tracker\src\middleware\auth.js:40:27
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 14:40:24: Error : please authenticate,Request : /api/viewIssue,stack:Error: please authenticate
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:40:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
