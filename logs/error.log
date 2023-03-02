@@ -92,3 +92,30 @@ error:  Mar-02-2023 10:16:40: Error : Cannot read properties of null (reading 'u
 error:  Mar-02-2023 10:35:53: Error : You have no access to this issue,Request : /api/deleteIssue/64002dcbab8b54decda53dba,stack:Error: You have no access to this issue
     at verifyUser (C:\Users\abc\issue-tracker\src\middleware\auth.js:76:19)
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 12:00:52: Error : please authenticate,Request : /api/viewIssue,stack:Error: please authenticate
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:40:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 12:01:39: Error : Email not found,Request : /api/Login,stack:Error: Email not found
+    at Login (C:\Users\abc\issue-tracker\src\controllers\user_controller.js:15:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 12:08:04: Error : please authenticate,Request : /api/createIssue,stack:Error: please authenticate
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:40:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 12:15:23: Error : please authenticate,Request : /api/viewIssue,stack:Error: please authenticate
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:40:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 12:17:52: Error : saveComments is not defined,Request : /api/addComment,stack:ReferenceError: saveComments is not defined
+    at addComment (C:\Users\abc\issue-tracker\src\controllers\user_controller.js:384:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 12:22:29: Error : Cannot read properties of undefined (reading 'push'),Request : /api/barChart,stack:TypeError: Cannot read properties of undefined (reading 'push')
+    at barChart (C:\Users\abc\issue-tracker\src\controllers\user_controller.js:364:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 13:24:31: Error : res is not defined,Request : /api/isTokenValid,stack:ReferenceError: res is not defined
+    at isTokenValid (C:\Users\abc\issue-tracker\src\controllers\user_controller.js:397:5)
+    at Layer.handle [as handle_request] (C:\Users\abc\issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\abc\issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:58:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 13:25:26: Error : please authenticate,Request : /api/isTokenValid,stack:Error: please authenticate
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:40:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
