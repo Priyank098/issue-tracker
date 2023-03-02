@@ -361,7 +361,7 @@ const barChart = async (req, res, next) => {
 const addComment = async (req, res, next) => {
     const { userId,userName, issueId, comment } = req.body;
     const issueData = await Issue.findById(issueId)
-    issueData.comments = issueData.comments.concat()
+    issueData.comments = issueData.comments.concat({comment:comment,name:userName,userId:userId})
 }
 
 module.exports = { Login, createIssue, updateIssue, getIssue, getIssueById, deleteIssue, assignIssue, updateStatus, statusFilterCount, logout, userAssignedIssues, userIssues, barChart, addComment }

@@ -89,3 +89,6 @@ error:  Mar-02-2023 10:15:09: Error : Cannot read properties of null (reading 'u
 error:  Mar-02-2023 10:16:40: Error : Cannot read properties of null (reading 'updateCount'),Request : /api/deleteIssue/63ff4490ba3186a2b715ce59,stack:TypeError: Cannot read properties of null (reading 'updateCount')
     at deleteIssue (C:\Users\abc\issue-tracker\src\controllers\user_controller.js:166:24)
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 10:35:53: Error : You have no access to this issue,Request : /api/deleteIssue/64002dcbab8b54decda53dba,stack:Error: You have no access to this issue
+    at verifyUser (C:\Users\abc\issue-tracker\src\middleware\auth.js:76:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
