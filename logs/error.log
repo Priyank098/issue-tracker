@@ -47,3 +47,48 @@ error:  Mar-01-2023 11:38:42: Error : Access Denied!!,Request : /api/createUser,
 error:  Mar-01-2023 11:40:03: Error : Email already found,Request : /api/createUser,stack:Error: Email already found
     at createUser (C:\Users\abc\issue-tracker\src\Controllers\admin_controller.js:15:19)
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-01-2023 16:01:50: Error : No issue assigned yet..,Request : /api/userAssignedIssues,stack:Error: No issue assigned yet..
+    at userAssignedIssues (C:\Users\abc\issue-tracker\src\controllers\user_controller.js:322:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-01-2023 17:42:50: Error : Cannot read properties of undefined (reading 'replace'),Request : /api/viewUserById/63ff403aba3186a2b715ce24,stack:TypeError: Cannot read properties of undefined (reading 'replace')
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:36:58
+    at Layer.handle [as handle_request] (C:\Users\abc\issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\abc\issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\abc\issue-tracker\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\abc\issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\abc\issue-tracker\node_modules\express\lib\router\index.js:284:15
+    at param (C:\Users\abc\issue-tracker\node_modules\express\lib\router\index.js:365:14)
+    at param (C:\Users\abc\issue-tracker\node_modules\express\lib\router\index.js:376:14)
+    at Function.process_params (C:\Users\abc\issue-tracker\node_modules\express\lib\router\index.js:421:3)
+    at next (C:\Users\abc\issue-tracker\node_modules\express\lib\router\index.js:280:10)
+error:  Mar-01-2023 17:51:34: Error : User not deleted,Request : /api/deleteUser/63ff403aba3186a2b715ce24,stack:Error: User not deleted
+    at deleteUser (C:\Users\abc\issue-tracker\src\controllers\admin_controller.js:98:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-01-2023 17:53:22: Error : please authenticate,Request : /api/createUser,stack:Error: please authenticate
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:40:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-01-2023 17:53:53: Error : please authenticate,Request : /api/viewUserById/63ff403aba3186a2b715ce24,stack:Error: please authenticate
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:40:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-01-2023 17:54:25: Error : user not found,Request : /api/viewUserById/63ff403aba3186a2b715ce24,stack:Error: user not found
+    at getUserById (C:\Users\abc\issue-tracker\src\controllers\admin_controller.js:48:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-01-2023 18:11:48: Error : Operation `users.findOne()` buffering timed out after 10000ms,Request : /api/barChart,stack:MongooseError: Operation `users.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\abc\issue-tracker\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:175:23)
+    at listOnTimeout (node:internal/timers:564:17)
+    at process.processTimers (node:internal/timers:507:7)
+error:  Mar-02-2023 10:12:43: Error : please authenticate,Request : /api/viewIssue,stack:Error: please authenticate
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:40:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 10:13:21: Error : Cannot read properties of null (reading 'updateCount'),Request : /api/deleteIssue/63ff4472ba3186a2b715ce53,stack:TypeError: Cannot read properties of null (reading 'updateCount')
+    at deleteIssue (C:\Users\abc\issue-tracker\src\controllers\user_controller.js:163:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 10:15:09: Error : Cannot read properties of null (reading 'updateCount'),Request : /api/deleteIssue/63ff4481ba3186a2b715ce56,stack:TypeError: Cannot read properties of null (reading 'updateCount')
+    at deleteIssue (C:\Users\abc\issue-tracker\src\controllers\user_controller.js:164:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 10:16:40: Error : Cannot read properties of null (reading 'updateCount'),Request : /api/deleteIssue/63ff4490ba3186a2b715ce59,stack:TypeError: Cannot read properties of null (reading 'updateCount')
+    at deleteIssue (C:\Users\abc\issue-tracker\src\controllers\user_controller.js:166:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 10:35:53: Error : You have no access to this issue,Request : /api/deleteIssue/64002dcbab8b54decda53dba,stack:Error: You have no access to this issue
+    at verifyUser (C:\Users\abc\issue-tracker\src\middleware\auth.js:76:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
