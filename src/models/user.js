@@ -41,14 +41,15 @@ userSchema.virtual('issues', {
     foreignField: 'createdBy'
 })
 
-// userSchema.methods.toJSON = function () {
-//     const user = this
-//     const userObject = user.toObject()
+userSchema.methods.toJSON = function () {
+    const user = this
+    const userObject = user.toObject()
 
-//     delete userObject.token
+    delete userObject.token
+    delete userObject.password
 
-//     return userObject
-// }
+    return userObject
+}
 
 userSchema.pre("save", async function (next) {
     if (this.isModified("password")) {

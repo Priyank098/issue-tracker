@@ -12,6 +12,7 @@ const Priority = require("../utils/Priority")
     },
     assignedTo : {
         type: mongoose.Schema.Types.ObjectId,
+        ref: 'Users'
     },
     priority : {
         type: String,

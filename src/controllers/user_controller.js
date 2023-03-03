@@ -115,7 +115,7 @@ const updateIssue = async (req, res, next) => {
 
 const getIssue = async (req, res, next) => {
     try {
-        const issueData = await Issue.find().populate("createdBy")
+        const issueData = await Issue.find().populate("createdBy").populate("assignedTo")
         if (!issueData) {
             throw new Error("no data found", {
                 cause: { status: 404 }
@@ -137,7 +137,7 @@ const getIssueById = async (req, res, next) => {
                 cause: { status: 404 }
             })
         }
-        const issueData = await Issue.findById(req.params.id).populate("createdBy")
+        const issueData = await Issue.findById(req.params.id).populate("createdBy").populate("assignedTo")
         if (!issueData) {
             throw new Error("no data found", {
                 cause: { status: 404 }
@@ -306,7 +306,7 @@ const logout = async (req, res, next) => {
 
 const userIssues = async (req, res, next) => {
     try {
-        const issues = await Issue.find({ createdBy: req.user._id })
+        const issues = await Issue.find({ createdBy: req.user._id }).populate("createdBy").populate("assignedTo")
         if (!issues) {
             throw new Error("something went wrong please try again later", {
                 cause: { status: 404 }
@@ -330,7 +330,7 @@ const userIssues = async (req, res, next) => {
 
 const userAssignedIssues = async (req, res, next) => {
     try {
-        const issues = await Issue.find({ assignedTo: req.user._id })
+        const issues = await Issue.find({ assignedTo: req.user._id }).populate("createdBy").populate("assignedTo")
         if (!issues) {
             throw new Error("something went wrong please try again later", {
                 cause: { status: 404 }
