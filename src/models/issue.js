@@ -29,23 +29,8 @@ const Priority = require("../utils/Priority")
         default: Status.values[0]
     },
     date:{
-        type:String,
-        
+        type:String,  
     },
-    comments: [{
-        comment: {
-            type: String,
-            required: true
-        },
-        name: {
-            type: String,
-            required: true
-        },
-        userId: {
-            type: mongoose.Schema.Types.ObjectId,
-            required: true
-        }
-    }],
    }, {
     timestamps: true
 });

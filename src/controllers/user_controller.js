@@ -1,5 +1,6 @@
 const Issue = require("../models/issue")
 const User = require("../models/user")
+const Comment = require("../models/comment")
 const { validatingFields, update_issue, update_issue_helper } = require("../services/user.services")
 const Status = require("../utils/Status")
 
@@ -377,17 +378,44 @@ const barChart = async (req, res, next) => {
 const addComment = async (req, res, next) => {
     const {issueId, comment } = req.body;
     const { _id, name} = req.user
+    const date = new Date()
+
     try {
-        const issueData = await Issue.findById(issueId)
-        issueData.comments = issueData.comments.concat({ comment: comment, name: name, userId: _id })
+        const commentData = await new Comment({ comment: comment, creatorName: name, creatorId: _id,issueId:issueId, date: `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`, })
         
-        if ( await issueData.save()) {
+        if ( await commentData.save()) {
             res.status(200).json({
                 success: true,
-                data: issueData
+                data: commentData
             })
         } else {
             throw new Error("something went wrong please try again later")
+        }
+    } catch (error) {
+        next(error)
+    }
+}
+
+const deleteComment = async (req, res, next) => {
+    const id = req.params.id;
+    const { _id} = req.user
+    try {
+        const comment = await Comment.findById(id)
+        if(comment.creatorId.toString() == _id.toString()){
+            const commentData = await Comment.findByIdAndDelete(id)
+            
+            if (commentData) {
+                res.status(200).json({
+                    success: true,
+                    data: commentData
+                })
+            } else {
+                throw new Error("something went wrong please try again later")
+            }
+        }else{
+            throw new Error("You have no access to delete this issue..", {
+                cause: { status: 400 }
+            })
         }
     } catch (error) {
         next(error)
@@ -397,4 +425,4 @@ const isTokenValid = async(req,res,next) =>{
     res.status(200).json({success:true})
 }
 
-module.exports = { Login, createIssue, updateIssue, getIssue, getIssueById, deleteIssue, assignIssue, updateStatus, statusFilterCount, logout, userAssignedIssues, userIssues, barChart, addComment,isTokenValid }
+module.exports = { Login, createIssue, updateIssue, getIssue, getIssueById, deleteIssue, assignIssue, updateStatus, statusFilterCount, logout, userAssignedIssues, userIssues, barChart, addComment,isTokenValid,deleteComment }
