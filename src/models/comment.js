@@ -24,7 +24,3 @@ const mongoose =  require('mongoose');
 });
 
 module.exports = mongoose.models.Comment || mongoose.model('Comment',commentSchema);
-
-// const Issue =  mongoose.model('Issue', IssueSchema)
-
-// module.exports = Issue

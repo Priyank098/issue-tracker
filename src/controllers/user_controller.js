@@ -2,7 +2,7 @@ const Issue = require("../models/issue")
 const User = require("../models/user")
 const Comment = require("../models/comment")
 const { validatingFields, update_issue, update_issue_helper } = require("../services/user.services")
-const Status = require("../utils/Status")
+const Status = require("../utils/status")
 
 const Login = async (req, res, next) => {
     const { email, password } = req.body
@@ -174,7 +174,9 @@ const deleteIssue = async (req, res, next) => {
             }
         } else {
             const deleteIssue = await Issue.findByIdAndDelete(req.params.id);
+            const deleteComment = await Comment.remove({issueId:req.params.id})
             const assignUserData = await User.findById(deleteIssue.assignedTo)
+
             // console.log(assignUserData);
             assignUserData.updateCount()
             if (!deleteIssue) {
@@ -313,11 +315,6 @@ const userIssues = async (req, res, next) => {
             })
         }
         else {
-            if (issues == []) {
-                throw new Error("No issue created yet..", {
-                    cause: { status: 200 }
-                })
-            }
             res.status(201).json({
                 success: true,
                 data: issues
@@ -337,11 +334,6 @@ const userAssignedIssues = async (req, res, next) => {
             })
         }
         else {
-            if (issues == "") {
-                throw new Error("No issue assigned yet..", {
-                    cause: { status: 200 }
-                })
-            }
             res.status(201).json({
                 success: true,
                 data: issues
@@ -425,4 +417,43 @@ const isTokenValid = async(req,res,next) =>{
     res.status(200).json({success:true})
 }
 
-module.exports = { Login, createIssue, updateIssue, getIssue, getIssueById, deleteIssue, assignIssue, updateStatus, statusFilterCount, logout, userAssignedIssues, userIssues, barChart, addComment,isTokenValid,deleteComment }
+const viewComments = async (req, res, next) => {
+    try {
+        if (!req.params.id) {
+            throw new Error("Id should be valid", {
+                cause: { status: 404 }
+            })
+        }
+        const commentData = await Comment.find({issueId:req.params.id})
+        if (!commentData) {
+            throw new Error("no data found", {
+                cause: { status: 404 }
+            })
+        }
+        res.status(200).json({
+            success: true,
+            data: commentData
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
+const commentsCount = async (req, res, next) => {
+    try {
+        if (!req.params.id) {
+            throw new Error("Id should be valid", {
+                cause: { status: 404 }
+            })
+        }
+        const commentData = await Comment.countDocuments({issueId:req.params.id})
+        res.status(200).json({
+            success: true,
+            data: commentData
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
+module.exports = { Login, createIssue, updateIssue, getIssue, getIssueById, deleteIssue, assignIssue, updateStatus, statusFilterCount, logout, userAssignedIssues, userIssues, barChart, addComment,isTokenValid,deleteComment ,viewComments,commentsCount}

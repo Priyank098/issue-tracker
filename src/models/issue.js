@@ -1,6 +1,6 @@
 const mongoose =  require('mongoose');
-const Status = require("../utils/Status")
-const Priority = require("../utils/Priority")
+const Status = require("../utils/status")
+const Priority = require("../utils/priority")
  const IssueSchema = new mongoose.Schema({
     title : {
         type: String,
@@ -36,15 +36,6 @@ const Priority = require("../utils/Priority")
     timestamps: true
 });
 
-// IssueSchema.methods.toJSON = function () {
-//     const user = this
-//     const userObject = user.toObject()
-
-//     delete userObject.password
-//     delete userObject.token
-
-//     return userObject
-// }
 module.exports = mongoose.models.Issue || mongoose.model('Issue', IssueSchema);
 
 // const Issue =  mongoose.model('Issue', IssueSchema)

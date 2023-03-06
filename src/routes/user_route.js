@@ -23,29 +23,37 @@ router.delete('/deleteIssue/:id',auth(),verifyUser,userController.deleteIssue)
 //assign issue to user 
 router.post('/assignIssue',auth(),userController.assignIssue)
 
-//assign issue to user 
+//update issue status 
 router.patch('/updateStatus',auth(),isAssigned,userController.updateStatus)
 
 //get count of issue data status wise 
 router.get('/statusFilterCount',auth(),userController.statusFilterCount)
 
-//get count of issue data status wise 
+//logout 
 router.post('/logout',auth(),userController.logout)
 
-//get count of issue data status wise 
+//view user issues
 router.get('/userIssues',auth(),userController.userIssues)
 
-//get count of issue data status wise 
+//view user assigned issues
 router.get('/userAssignedIssues',auth(),userController.userAssignedIssues)
 
-//get count of issue data status wise 
+//bar chart
 router.get('/barChart',auth(),userController.barChart)
 
-//get count of issue data status wise 
+//add comment
 router.post('/addComment',auth(),userController.addComment)
 
+//delete comment
 router.delete('/deleteComment/:id',auth(),userController.deleteComment)
 
+//view comment
+router.get('/viewComments/:id',auth(),userController.viewComments)
+
+//count comment
+router.get('/commentsCount/:id',auth(),userController.commentsCount)
+
+//token valiadation
 router.get('/isTokenValid',auth(),userController.isTokenValid)
 
 module.exports = router;
