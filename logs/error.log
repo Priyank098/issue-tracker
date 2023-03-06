@@ -614,3 +614,14 @@ error:  Mar-06-2023 10:52:45: Error : no data found,Request : /api/commentsCount
 error:  Mar-06-2023 10:53:56: Error : no data found,Request : /api/commentsCount/640025231049c5cb802a95f2,stack:Error: no data found
     at commentsCount (C:\Users\abc\issue-tracker\src\controllers\user_controller.js:451:19)
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-06-2023 11:35:34: Error : Email not found,Request : /api/Login,stack:Error: Email not found
+    at Login (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:17:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-06-2023 11:36:24: Error : Email not found,Request : /api/Login,stack:Error: Email not found
+    at Login (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:17:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-06-2023 11:38:56: Error : Passsword not match,Request : /api/Login,stack:Error: Passsword not match
+    at Login (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:23:23)
+error:  Mar-06-2023 14:06:43: Error : please authenticate,Request : /api/viewIssue,stack:Error: please authenticate
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:40:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
