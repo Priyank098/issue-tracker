@@ -95,7 +95,7 @@ const updateIssue = async (req, res, next) => {
             if (issueData.status === Status.values[0]) {
                 validatingFields(title, description, priority)
                 update_issue(req, res, Issue, assignUserData, "", Status)
-            } else if (issueData.status === Status.values[1]) {
+            } else if (issueData.status === Status.values[1] || issueData.status === Status.values[2]) {
                 if (issueData.assignedTo == req.body.assignedTo) {
                     validatingFields(title, description, priority)
                     update_issue(req, res, Issue, "", "", "")
@@ -214,7 +214,7 @@ const assignIssue = async (req, res, next) => {
             });
             await assignUserData.updateCount()
             update_issue_helper(updateIssue, res)
-        } else if (issueData.status === Status.values[1]) {
+        } else if (issueData.status === Status.values[1] || issueData.status === Status.values[2]) {
             if (issueData.assignedTo == req.body.assignedTo) {
                 throw new Error("Issue Already Assigned to this person.Please try different User", {
                     cause: { status: 404 }
