@@ -3,6 +3,7 @@ const validator = require('validator')
 const bcrypt = require("bcryptjs")
 const jwt = require('jsonwebtoken')
 const issue = require("./issue")
+const department = require("../utils/department")
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -10,15 +11,31 @@ const userSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique:true,
+        trim: true,
+        lowercase: true,
+        validate(value) {
+            if (!validator.isEmail(value)) {
+                throw new Error('Email is invalid')
+            }
+        }
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        minlength: 7,
+        trim: true,
+        validate(value) {
+            if (value.toLowerCase().includes('password')) {
+                throw new Error('Password cannot contain "password"')
+            }
+        }
     },
     department: {
         type: String,
-        required: true
+        enum: department,
+        required:true
     },
     isAdmin: {
         type: Boolean,
@@ -41,14 +58,14 @@ userSchema.virtual('issues', {
     foreignField: 'createdBy'
 })
 
-// userSchema.methods.toJSON = function () {
-//     const user = this
-//     const userObject = user.toObject()
+userSchema.methods.toJSON = function () {
+    const user = this
+    const userObject = user.toObject()
 
-//     delete userObject.token
+    delete userObject.password
 
-//     return userObject
-// }
+    return userObject
+}
 
 userSchema.pre("save", async function (next) {
     if (this.isModified("password")) {
@@ -78,6 +95,7 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
 }
 module.exports = mongoose.models.Users || mongoose.model('Users', userSchema);
-// module.exports =  mongoose.model('user', userSchema)
 
-// module.exports = User
+//module.exports = User
+
+

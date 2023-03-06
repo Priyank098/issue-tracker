@@ -1,7 +1,9 @@
+const issue = require("../models/issue")
 const Issue = require("../models/issue")
 const User = require("../models/user")
+const Comment = require("../models/comment")
 const { validatingFields, update_issue, update_issue_helper } = require("../services/user.services")
-const Status = require("../utils/Status")
+const Status = require("../utils/status")
 
 const Login = async (req, res, next) => {
     const { email, password } = req.body
@@ -93,7 +95,7 @@ const updateIssue = async (req, res, next) => {
             if (issueData.status === Status.values[0]) {
                 validatingFields(title, description, priority)
                 update_issue(req, res, Issue, assignUserData, "", Status)
-            } else if (issueData.status === Status.values[1]) {
+            } else if (issueData.status === Status.values[1] || issueData.status === Status.values[2]) {
                 if (issueData.assignedTo == req.body.assignedTo) {
                     validatingFields(title, description, priority)
                     update_issue(req, res, Issue, "", "", "")
@@ -114,7 +116,7 @@ const updateIssue = async (req, res, next) => {
 
 const getIssue = async (req, res, next) => {
     try {
-        const issueData = await Issue.find().populate("createdBy")
+        const issueData = await Issue.find().populate("createdBy").populate("assignedTo")
         if (!issueData) {
             throw new Error("no data found", {
                 cause: { status: 404 }
@@ -136,7 +138,7 @@ const getIssueById = async (req, res, next) => {
                 cause: { status: 404 }
             })
         }
-        const issueData = await Issue.findById(req.params.id).populate("createdBy")
+        const issueData = await Issue.findById(req.params.id).populate("createdBy").populate("assignedTo")
         if (!issueData) {
             throw new Error("no data found", {
                 cause: { status: 404 }
@@ -173,7 +175,9 @@ const deleteIssue = async (req, res, next) => {
             }
         } else {
             const deleteIssue = await Issue.findByIdAndDelete(req.params.id);
+            const deleteComment = await Comment.remove({issueId:req.params.id})
             const assignUserData = await User.findById(deleteIssue.assignedTo)
+
             // console.log(assignUserData);
             assignUserData.updateCount()
             if (!deleteIssue) {
@@ -210,7 +214,7 @@ const assignIssue = async (req, res, next) => {
             });
             await assignUserData.updateCount()
             update_issue_helper(updateIssue, res)
-        } else if (issueData.status === Status.values[1]) {
+        } else if (issueData.status === Status.values[1] || issueData.status === Status.values[2]) {
             if (issueData.assignedTo == req.body.assignedTo) {
                 throw new Error("Issue Already Assigned to this person.Please try different User", {
                     cause: { status: 404 }
@@ -305,18 +309,13 @@ const logout = async (req, res, next) => {
 
 const userIssues = async (req, res, next) => {
     try {
-        const issues = await Issue.find({ createdBy: req.user._id })
+        const issues = await Issue.find({ createdBy: req.user._id }).populate("createdBy").populate("assignedTo")
         if (!issues) {
             throw new Error("something went wrong please try again later", {
                 cause: { status: 404 }
             })
         }
         else {
-            if (issues == []) {
-                throw new Error("No issue created yet..", {
-                    cause: { status: 200 }
-                })
-            }
             res.status(201).json({
                 success: true,
                 data: issues
@@ -329,18 +328,13 @@ const userIssues = async (req, res, next) => {
 
 const userAssignedIssues = async (req, res, next) => {
     try {
-        const issues = await Issue.find({ assignedTo: req.user._id })
+        const issues = await Issue.find({ assignedTo: req.user._id }).populate("createdBy").populate("assignedTo")
         if (!issues) {
             throw new Error("something went wrong please try again later", {
                 cause: { status: 404 }
             })
         }
         else {
-            if (issues == "") {
-                throw new Error("No issue assigned yet..", {
-                    cause: { status: 200 }
-                })
-            }
             res.status(201).json({
                 success: true,
                 data: issues
@@ -377,17 +371,44 @@ const barChart = async (req, res, next) => {
 const addComment = async (req, res, next) => {
     const {issueId, comment } = req.body;
     const { _id, name} = req.user
+    const date = new Date()
+
     try {
-        const issueData = await Issue.findById(issueId)
-        issueData.comments = issueData.comments.concat({ comment: comment, name: name, userId: _id })
+        const commentData = await new Comment({ comment: comment, creatorName: name, creatorId: _id,issueId:issueId, date: `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`, })
         
-        if ( await issueData.save()) {
+        if ( await commentData.save()) {
             res.status(200).json({
                 success: true,
-                data: issueData
+                data: commentData
             })
         } else {
             throw new Error("something went wrong please try again later")
+        }
+    } catch (error) {
+        next(error)
+    }
+}
+
+const deleteComment = async (req, res, next) => {
+    const id = req.params.id;
+    const { _id} = req.user
+    try {
+        const comment = await Comment.findById(id)
+        if(comment.creatorId.toString() == _id.toString()){
+            const commentData = await Comment.findByIdAndDelete(id)
+            
+            if (commentData) {
+                res.status(200).json({
+                    success: true,
+                    data: commentData
+                })
+            } else {
+                throw new Error("something went wrong please try again later")
+            }
+        }else{
+            throw new Error("You have no access to delete this issue..", {
+                cause: { status: 400 }
+            })
         }
     } catch (error) {
         next(error)
@@ -397,4 +418,43 @@ const isTokenValid = async(req,res,next) =>{
     res.status(200).json({success:true})
 }
 
-module.exports = { Login, createIssue, updateIssue, getIssue, getIssueById, deleteIssue, assignIssue, updateStatus, statusFilterCount, logout, userAssignedIssues, userIssues, barChart, addComment,isTokenValid }
+const viewComments = async (req, res, next) => {
+    try {
+        if (!req.params.id) {
+            throw new Error("Id should be valid", {
+                cause: { status: 404 }
+            })
+        }
+        const commentData = await Comment.find({issueId:req.params.id})
+        if (!commentData) {
+            throw new Error("no data found", {
+                cause: { status: 404 }
+            })
+        }
+        res.status(200).json({
+            success: true,
+            data: commentData
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
+const commentsCount = async (req, res, next) => {
+    try {
+        if (!req.params.id) {
+            throw new Error("Id should be valid", {
+                cause: { status: 404 }
+            })
+        }
+        const commentData = await Comment.countDocuments({issueId:req.params.id})
+        res.status(200).json({
+            success: true,
+            data: commentData
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
+module.exports = { Login, createIssue, updateIssue, getIssue, getIssueById, deleteIssue, assignIssue, updateStatus, statusFilterCount, logout, userAssignedIssues, userIssues, barChart, addComment,isTokenValid,deleteComment ,viewComments,commentsCount}
