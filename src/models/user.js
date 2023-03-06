@@ -3,6 +3,7 @@ const validator = require('validator')
 const bcrypt = require("bcryptjs")
 const jwt = require('jsonwebtoken')
 const issue = require("./issue")
+const department = require("../utils/department")
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -18,6 +19,7 @@ const userSchema = new mongoose.Schema({
     },
     department: {
         type: String,
+        enum: department,
         required: true
     },
     isAdmin: {

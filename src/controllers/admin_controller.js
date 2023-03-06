@@ -1,4 +1,4 @@
-const User = require("../Models/user")
+const User = require("../models/user")
 const bcrypt = require('bcryptjs')
 const mongoose = require('mongoose')
 const {sendWelcomeEmail} = require('../utils/mail')
@@ -29,6 +29,7 @@ const createUser =  async (req,res,next) => {
         
        } catch (error) {
            next(error)
+       
     }
 }
 

@@ -47,6 +47,7 @@ error:  Mar-01-2023 11:38:42: Error : Access Denied!!,Request : /api/createUser,
 error:  Mar-01-2023 11:40:03: Error : Email already found,Request : /api/createUser,stack:Error: Email already found
     at createUser (C:\Users\abc\issue-tracker\src\Controllers\admin_controller.js:15:19)
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+<<<<<<< HEAD
 error:  Mar-01-2023 12:28:55: Error : Cannot read properties of undefined (reading 'replace'),Request : /api/deleteUser/63fc7972e01e2f5a666dac54,stack:TypeError: Cannot read properties of undefined (reading 'replace')
     at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:36:58
     at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
@@ -381,4 +382,195 @@ error:  Mar-02-2023 12:58:26: Error : passowrd is not defined,Request : /api/cre
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
 error:  Mar-02-2023 15:28:41: Error : please authenticate,Request : /api/createUser,stack:Error: please authenticate
     at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:40:27
+=======
+error:  Mar-01-2023 16:01:50: Error : No issue assigned yet..,Request : /api/userAssignedIssues,stack:Error: No issue assigned yet..
+    at userAssignedIssues (C:\Users\abc\issue-tracker\src\controllers\user_controller.js:322:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-01-2023 17:42:50: Error : Cannot read properties of undefined (reading 'replace'),Request : /api/viewUserById/63ff403aba3186a2b715ce24,stack:TypeError: Cannot read properties of undefined (reading 'replace')
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:36:58
+    at Layer.handle [as handle_request] (C:\Users\abc\issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\abc\issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\abc\issue-tracker\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\abc\issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\abc\issue-tracker\node_modules\express\lib\router\index.js:284:15
+    at param (C:\Users\abc\issue-tracker\node_modules\express\lib\router\index.js:365:14)
+    at param (C:\Users\abc\issue-tracker\node_modules\express\lib\router\index.js:376:14)
+    at Function.process_params (C:\Users\abc\issue-tracker\node_modules\express\lib\router\index.js:421:3)
+    at next (C:\Users\abc\issue-tracker\node_modules\express\lib\router\index.js:280:10)
+error:  Mar-01-2023 17:51:34: Error : User not deleted,Request : /api/deleteUser/63ff403aba3186a2b715ce24,stack:Error: User not deleted
+    at deleteUser (C:\Users\abc\issue-tracker\src\controllers\admin_controller.js:98:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-01-2023 17:53:22: Error : please authenticate,Request : /api/createUser,stack:Error: please authenticate
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:40:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-01-2023 17:53:53: Error : please authenticate,Request : /api/viewUserById/63ff403aba3186a2b715ce24,stack:Error: please authenticate
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:40:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-01-2023 17:54:25: Error : user not found,Request : /api/viewUserById/63ff403aba3186a2b715ce24,stack:Error: user not found
+    at getUserById (C:\Users\abc\issue-tracker\src\controllers\admin_controller.js:48:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-01-2023 18:11:48: Error : Operation `users.findOne()` buffering timed out after 10000ms,Request : /api/barChart,stack:MongooseError: Operation `users.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\abc\issue-tracker\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:175:23)
+    at listOnTimeout (node:internal/timers:564:17)
+    at process.processTimers (node:internal/timers:507:7)
+error:  Mar-02-2023 10:12:43: Error : please authenticate,Request : /api/viewIssue,stack:Error: please authenticate
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:40:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 10:13:21: Error : Cannot read properties of null (reading 'updateCount'),Request : /api/deleteIssue/63ff4472ba3186a2b715ce53,stack:TypeError: Cannot read properties of null (reading 'updateCount')
+    at deleteIssue (C:\Users\abc\issue-tracker\src\controllers\user_controller.js:163:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 10:15:09: Error : Cannot read properties of null (reading 'updateCount'),Request : /api/deleteIssue/63ff4481ba3186a2b715ce56,stack:TypeError: Cannot read properties of null (reading 'updateCount')
+    at deleteIssue (C:\Users\abc\issue-tracker\src\controllers\user_controller.js:164:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 10:16:40: Error : Cannot read properties of null (reading 'updateCount'),Request : /api/deleteIssue/63ff4490ba3186a2b715ce59,stack:TypeError: Cannot read properties of null (reading 'updateCount')
+    at deleteIssue (C:\Users\abc\issue-tracker\src\controllers\user_controller.js:166:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 10:35:53: Error : You have no access to this issue,Request : /api/deleteIssue/64002dcbab8b54decda53dba,stack:Error: You have no access to this issue
+    at verifyUser (C:\Users\abc\issue-tracker\src\middleware\auth.js:76:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 12:00:52: Error : please authenticate,Request : /api/viewIssue,stack:Error: please authenticate
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:40:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 12:01:39: Error : Email not found,Request : /api/Login,stack:Error: Email not found
+    at Login (C:\Users\abc\issue-tracker\src\controllers\user_controller.js:15:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 12:08:04: Error : please authenticate,Request : /api/createIssue,stack:Error: please authenticate
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:40:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 12:15:23: Error : please authenticate,Request : /api/viewIssue,stack:Error: please authenticate
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:40:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 12:17:52: Error : saveComments is not defined,Request : /api/addComment,stack:ReferenceError: saveComments is not defined
+    at addComment (C:\Users\abc\issue-tracker\src\controllers\user_controller.js:384:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 12:22:29: Error : Cannot read properties of undefined (reading 'push'),Request : /api/barChart,stack:TypeError: Cannot read properties of undefined (reading 'push')
+    at barChart (C:\Users\abc\issue-tracker\src\controllers\user_controller.js:364:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 13:24:31: Error : res is not defined,Request : /api/isTokenValid,stack:ReferenceError: res is not defined
+    at isTokenValid (C:\Users\abc\issue-tracker\src\controllers\user_controller.js:397:5)
+    at Layer.handle [as handle_request] (C:\Users\abc\issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\abc\issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:58:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 13:25:26: Error : please authenticate,Request : /api/isTokenValid,stack:Error: please authenticate
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:40:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 14:40:24: Error : please authenticate,Request : /api/viewIssue,stack:Error: please authenticate
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:40:27
+>>>>>>> 04b25265e7accb93ef6fc010be81f9bf5acea67d
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 17:10:43: Error : Data not found,Request : /api/deleteComment,stack:Error: Data not found
+    at deleteComment (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:405:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 17:13:38: Error : Cannot read properties of undefined (reading 'findById'),Request : /api/deleteComment,stack:TypeError: Cannot read properties of undefined (reading 'findById')
+    at deleteComment (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:402:50)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:58:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 17:14:14: Error : Cannot read properties of undefined (reading 'find'),Request : /api/deleteComment,stack:TypeError: Cannot read properties of undefined (reading 'find')
+    at deleteComment (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:402:50)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:58:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 17:18:51: Error : Cannot read properties of undefined (reading 'find'),Request : /api/deleteComment,stack:TypeError: Cannot read properties of undefined (reading 'find')
+    at deleteComment (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:402:50)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:58:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 22:50:48: Error : Access Denied!!,Request : /api/deleteUser/640076aa9fe0af6443724050,stack:Error: Access Denied!!
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:50:35
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 22:58:45: Error : Cast to ObjectId failed for value "{ 'comments.userId': new ObjectId("63feec42d7487c5a189dc561") }" (type Object) at path "_id" for model "Issue",Request : /api/deleteComment,stack:CastError: Cast to ObjectId failed for value "{ 'comments.userId': new ObjectId("63feec42d7487c5a189dc561") }" (type Object) at path "_id" for model "Issue"
+    at model.Query.exec (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\mongoose\lib\query.js:4912:21)
+    at Query.then (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\mongoose\lib\query.js:5011:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 23:13:00: Error : comment is not defined,Request : /api/deleteComment,stack:ReferenceError: comment is not defined
+    at deleteComment (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:402:29)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:58:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 23:13:45: Error : Cannot read properties of undefined (reading 'findById'),Request : /api/deleteComment,stack:TypeError: Cannot read properties of undefined (reading 'findById')
+    at deleteComment (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:402:43)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:58:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 23:17:49: Error : Cannot read properties of undefined (reading 'findById'),Request : /api/deleteComment,stack:TypeError: Cannot read properties of undefined (reading 'findById')
+    at deleteComment (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:402:43)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:58:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 23:21:09: Error : Cannot read properties of undefined (reading 'findById'),Request : /api/deleteComment,stack:TypeError: Cannot read properties of undefined (reading 'findById')
+    at deleteComment (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:402:43)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:58:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 23:25:20: Error : Cannot read properties of undefined (reading 'findById'),Request : /api/deleteComment,stack:TypeError: Cannot read properties of undefined (reading 'findById')
+    at deleteComment (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:402:43)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:58:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 23:27:54: Error : Cannot read properties of undefined (reading 'findById'),Request : /api/deleteComment,stack:TypeError: Cannot read properties of undefined (reading 'findById')
+    at deleteComment (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:402:43)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:58:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 23:47:52: Error : Cannot read properties of undefined (reading 'findById'),Request : /api/deleteComment,stack:TypeError: Cannot read properties of undefined (reading 'findById')
+    at deleteComment (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:402:43)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:58:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 23:49:34: Error : Data not found,Request : /api/deleteComment,stack:Error: Data not found
+    at deleteComment (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:406:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 23:53:16: Error : Cannot read properties of undefined (reading 'find'),Request : /api/deleteComment,stack:TypeError: Cannot read properties of undefined (reading 'find')
+    at deleteComment (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:402:50)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:58:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 23:53:39: Error : Cannot read properties of undefined (reading 'find'),Request : /api/deleteComment,stack:TypeError: Cannot read properties of undefined (reading 'find')
+    at deleteComment (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:402:50)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:58:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 23:55:05: Error : Cannot read properties of undefined (reading 'find'),Request : /api/deleteComment,stack:TypeError: Cannot read properties of undefined (reading 'find')
+    at deleteComment (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:402:50)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:58:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 23:56:54: Error : comments is not defined,Request : /api/deleteComment,stack:ReferenceError: comments is not defined
+    at deleteComment (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:402:29)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:58:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 23:57:19: Error : comments is not defined,Request : /api/deleteComment,stack:ReferenceError: comments is not defined
+    at deleteComment (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:402:29)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:58:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-02-2023 23:58:02: Error : Cannot read properties of undefined (reading 'findById'),Request : /api/deleteComment,stack:TypeError: Cannot read properties of undefined (reading 'findById')
+    at deleteComment (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:402:44)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:58:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-03-2023 00:04:28: Error : Cannot read properties of undefined (reading 'findById'),Request : /api/deleteComment,stack:TypeError: Cannot read properties of undefined (reading 'findById')
+    at deleteComment (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:402:44)
+    at Layer.handle [as handle_request] (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\antino lab\Desktop\Issue-tracker\src\middleware\auth.js:58:21
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
