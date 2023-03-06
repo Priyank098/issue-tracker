@@ -25,7 +25,10 @@ const createUser = async (req, res, next) => {
         if (!await user.save()) {
             throw new Error("User not created")
         }
-        res.status(200).json(user)
+        res.status(200).json({
+            success: true,
+            data: user
+        })
 
     } catch (error) {
         next(error)

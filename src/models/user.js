@@ -35,7 +35,7 @@ const userSchema = new mongoose.Schema({
     department: {
         type: String,
         enum: department,
-        required: true
+        required:true
     },
     isAdmin: {
         type: Boolean,
