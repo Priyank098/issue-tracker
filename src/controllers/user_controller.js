@@ -346,7 +346,16 @@ const userAssignedIssues = async (req, res, next) => {
 }
 
 const barChart = async (req, res, next) => {
-    var dayWiseData = []
+    var dayWiseData = {
+        day1:0,
+        day2:0,
+        day3:0,
+        day4:0,
+        day5:0,
+        day6:0,
+        day7:0,
+    }
+    const myKeys = Object.keys(dayWiseData)
     var i = 0;
     try {
         const allIssues = await Issue.aggregate([
@@ -354,8 +363,10 @@ const barChart = async (req, res, next) => {
             { $group: { _id: "$date", count: { $sum: 1 }, data: { $push: { id: "$_id", date: "$date" } } } }
         ])
         console.log(allIssues[0].count);
+        // console.log(Object.keys(dayWiseData));
         for (i = 0; i < allIssues.length; i++) {
-             dayWiseData.push(allIssues[i].count)
+            dayWiseData[myKeys[i]] = allIssues[i].count
+            //  dayWiseData.push(allIssues[i].count)
         }
 
         res.status(200).json({

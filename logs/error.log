@@ -638,3 +638,18 @@ error:  Mar-06-2023 11:40:27: Error : please authenticate,Request : /api/createU
 error:  Mar-06-2023 11:40:36: Error : please authenticate,Request : /api/createUser,stack:Error: please authenticate
     at C:\Users\abc\issue-tracker\src\middleware\auth.js:40:27
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-06-2023 14:10:40: Error : please authenticate,Request : /api/viewIssue,stack:Error: please authenticate
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:40:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-06-2023 14:48:26: Error : please authenticate,Request : /api/viewIssue,stack:Error: please authenticate
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:40:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-06-2023 14:49:24: Error : You have no access to this issue,Request : /api/deleteIssue/640592f91fdf8ecf9120848e,stack:Error: You have no access to this issue
+    at verifyUser (C:\Users\abc\issue-tracker\src\middleware\auth.js:76:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-06-2023 15:13:38: Error : please authenticate,Request : /api/barChart,stack:Error: please authenticate
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:40:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-06-2023 15:15:38: Error : dayWiseData.keys is not a function,Request : /api/barChart,stack:TypeError: dayWiseData.keys is not a function
+    at barChart (C:\Users\abc\issue-tracker\src\controllers\user_controller.js:365:33)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
