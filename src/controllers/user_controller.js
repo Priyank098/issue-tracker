@@ -244,7 +244,7 @@ const updateStatus = async (req, res, next) => {
         if (req.body.status == Status.values[0]) {
             const issueData = await Issue.findById(req.body._id)
             const userData = await User.findById(issueData.assignedTo)
-            const updateIssue = await Issue.findByIdAndUpdate(req.body._id, { status: req.body.status }, {
+            const updateIssue = await Issue.findByIdAndUpdate(req.body._id, { assignedTo:null,status: req.body.status }, {
                 new: true, runValidators: true
             });
             userData.updateCount()
