@@ -653,3 +653,24 @@ error:  Mar-06-2023 15:13:38: Error : please authenticate,Request : /api/barChar
 error:  Mar-06-2023 15:15:38: Error : dayWiseData.keys is not a function,Request : /api/barChart,stack:TypeError: dayWiseData.keys is not a function
     at barChart (C:\Users\abc\issue-tracker\src\controllers\user_controller.js:365:33)
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-06-2023 18:11:15: Error : please authenticate,Request : /api/barChart,stack:Error: please authenticate
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:40:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-06-2023 18:20:05: Error : Cannot read properties of null (reading 'assignedTo'),Request : /api/updateStatus,stack:TypeError: Cannot read properties of null (reading 'assignedTo')
+    at isAssigned (C:\Users\abc\issue-tracker\src\middleware\auth.js:89:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-06-2023 18:22:47: Error : Cannot read properties of null (reading 'assignedTo'),Request : /api/updateStatus,stack:TypeError: Cannot read properties of null (reading 'assignedTo')
+    at isAssigned (C:\Users\abc\issue-tracker\src\middleware\auth.js:89:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-06-2023 18:27:41: Error : Cannot read properties of null (reading 'assignedTo'),Request : /api/updateStatus,stack:TypeError: Cannot read properties of null (reading 'assignedTo')
+    at isAssigned (C:\Users\abc\issue-tracker\src\middleware\auth.js:89:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-07-2023 09:21:34: Error : Only assigned person can change the status of this issue,Request : /api/updateStatus,stack:Error: Only assigned person can change the status of this issue
+    at isAssigned (C:\Users\abc\issue-tracker\src\middleware\auth.js:92:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-07-2023 09:24:28: Error : Access Denied!!,Request : /api/createUser,stack:Error: Access Denied!!
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:50:35
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-07-2023 10:04:18: Error : Only assigned person can change the status of this issue,Request : /api/updateStatus,stack:Error: Only assigned person can change the status of this issue
+    at isAssigned (C:\Users\abc\issue-tracker\src\middleware\auth.js:92:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
