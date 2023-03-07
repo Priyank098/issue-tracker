@@ -16,7 +16,7 @@ router.delete('/deleteUser/:id',auth("/deleteUser/:id","delete"),admin_controlle
 router.get('/viewUserById/:id',auth("/viewUserById/:id","get"),admin_controller.getUserById)
 
 // view all User
-router.get('/viewUser',admin_controller.getUser)
+router.get('/viewUser',auth(),admin_controller.getUser)
 
 
 module.exports = router
