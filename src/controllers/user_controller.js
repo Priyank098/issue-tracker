@@ -356,23 +356,25 @@ const barChart = async (req, res, next) => {
         day7:0,
     }
     const myKeys = Object.keys(dayWiseData)
-    var i = 0;
+    // console.log(dayWiseData);
     try {
+        // const allIssues = await Issue.aggregate([
+        //     { $match: { createdAt: { $gte: new Date(new Date() - 7 * 60 * 60 * 24 * 1000) } } },
+        //     { $group: { _id: "$date", count: { $sum: 1 }, data: { $push: { id: "$_id", date: "$date" } } } }
+        // ])
         const allIssues = await Issue.aggregate([
             { $match: { createdAt: { $gte: new Date(new Date() - 7 * 60 * 60 * 24 * 1000) } } },
-            { $group: { _id: "$date", count: { $sum: 1 }, data: { $push: { id: "$_id", date: "$date" } } } }
+            { $group: { _id: "$date", count: { $sum: 1 } } },
+            {$sort: {_id: -1}}
         ])
-        console.log(allIssues[0].count);
-        // console.log(Object.keys(dayWiseData));
-        for (i = 0; i < allIssues.length; i++) {
+
+        for (var i = 0; i < allIssues.length; i++) {
             dayWiseData[myKeys[i]] = allIssues[i].count
-            //  dayWiseData.push(allIssues[i].count)
         }
 
         res.status(200).json({
             succes: true,
-            data: dayWiseData
-
+            data: allIssues
         })
     } catch (error) {
         next(error)

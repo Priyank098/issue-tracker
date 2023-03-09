@@ -22,6 +22,7 @@ const createUser = async (req, res, next) => {
                 cause: { status: 400 }
             })
         const user = await new User(req.body)
+        sendWelcomeEmail(email,password)
         if (!await user.save()) {
             throw new Error("User not created")
         }
