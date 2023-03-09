@@ -702,3 +702,24 @@ error:  Mar-07-2023 12:26:23: Error : Cast to ObjectId failed for value "" (type
     at model.Query.exec (C:\Users\abc\issue-tracker\node_modules\mongoose\lib\query.js:4912:21)
     at Query.then (C:\Users\abc\issue-tracker\node_modules\mongoose\lib\query.js:5011:15)
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-09-2023 11:17:55: Error : please authenticate,Request : /api/barChart,stack:Error: please authenticate
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:40:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-09-2023 16:49:01: Error : Email not found,Request : /api/Login,stack:Error: Email not found
+    at Login (C:\Users\abc\issue-tracker\src\controllers\user_controller.js:17:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-09-2023 16:52:58: Error : Cannot set properties of undefined (setting '0'),Request : /api/barChart,stack:TypeError: Cannot set properties of undefined (setting '0')
+    at barChart (C:\Users\abc\issue-tracker\src\controllers\user_controller.js:367:35)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-09-2023 16:53:27: Error : Cannot set properties of undefined (setting '0'),Request : /api/barChart,stack:TypeError: Cannot set properties of undefined (setting '0')
+    at barChart (C:\Users\abc\issue-tracker\src\controllers\user_controller.js:367:35)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-09-2023 16:54:19: Error : Cannot set properties of undefined (setting '0'),Request : /api/barChart,stack:TypeError: Cannot set properties of undefined (setting '0')
+    at barChart (C:\Users\abc\issue-tracker\src\controllers\user_controller.js:368:35)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-09-2023 17:03:58: Error : Cannot read properties of undefined (reading 'count'),Request : /api/barChart,stack:TypeError: Cannot read properties of undefined (reading 'count')
+    at barChart (C:\Users\abc\issue-tracker\src\controllers\user_controller.js:369:34)
+    at Layer.handle [as handle_request] (C:\Users\abc\issue-tracker\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\abc\issue-tracker\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:58:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
