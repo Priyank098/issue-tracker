@@ -6,10 +6,10 @@ const sendWelcomeEmail = ({email,password}) => {
     return sgMail
     .send({
 
-        to: 'sahilsrk338@gmail.com',
+        to: email,
         from: 'sahil.k@antino.io',
         subject: 'Thanks for joining in!',
-        text: `Welcome to the issue-tracker application. your email: ${email} and password ${password} is correct.`
+        text: `Welcome to the issue-tracker application. Your credentials for login our application:  email: ${email} and password ${password}  .`
     })
     .then(() => {
         console.log('Email sent')
