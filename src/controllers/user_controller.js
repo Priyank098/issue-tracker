@@ -374,7 +374,7 @@ const barChart = async (req, res, next) => {
 
         res.status(200).json({
             succes: true,
-            data: allIssues
+            data: dayWiseData
         })
     } catch (error) {
         next(error)

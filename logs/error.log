@@ -719,3 +719,26 @@ error:  Mar-07-2023 12:26:23: Error : Cast to ObjectId failed for value "" (type
     at model.Query.exec (C:\Users\abc\issue-tracker\node_modules\mongoose\lib\query.js:4912:21)
     at Query.then (C:\Users\abc\issue-tracker\node_modules\mongoose\lib\query.js:5011:15)
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-09-2023 18:03:44: Error : Email already found,Request : /api/createUser,stack:Error: Email already found
+    at createUser (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\admin_controller.js:21:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-09-2023 18:05:36: Error : Email not found,Request : /api/Login,stack:Error: Email not found
+    at Login (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:17:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-09-2023 18:06:32: Error : Email not found,Request : /api/Login,stack:Error: Email not found
+    at Login (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:17:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-09-2023 18:07:39: Error : Operation `users.findOne()` buffering timed out after 10000ms,Request : /api/createUser,stack:MongooseError: Operation `users.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:175:23)
+    at listOnTimeout (node:internal/timers:569:17)
+    at process.processTimers (node:internal/timers:512:7)
+error:  Mar-09-2023 18:08:06: Error : Email not found,Request : /api/Login,stack:Error: Email not found
+    at Login (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:17:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-09-2023 18:09:32: Error : Operation `users.findOne()` buffering timed out after 10000ms,Request : /api/Login,stack:MongooseError: Operation `users.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\antino lab\Desktop\Issue-tracker\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:175:23)
+    at listOnTimeout (node:internal/timers:569:17)
+    at process.processTimers (node:internal/timers:512:7)
+error:  Mar-09-2023 18:10:58: Error : Email not found,Request : /api/Login,stack:Error: Email not found
+    at Login (C:\Users\antino lab\Desktop\Issue-tracker\src\controllers\user_controller.js:17:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
