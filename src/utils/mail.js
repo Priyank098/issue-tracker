@@ -2,10 +2,9 @@ const sgMail = require('@sendgrid/mail')
 
 sgMail.setApiKey("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")
 
-const sendWelcomeEmail = ({email,password}) => {
+const sendWelcomeEmail = (email,password) => {
     return sgMail
     .send({
-
         to: email,
         from: 'sahil.k@antino.io',
         subject: 'Thanks for joining in!',

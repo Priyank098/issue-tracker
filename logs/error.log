@@ -723,3 +723,9 @@ error:  Mar-09-2023 17:03:58: Error : Cannot read properties of undefined (readi
     at next (C:\Users\abc\issue-tracker\node_modules\express\lib\router\route.js:144:13)
     at C:\Users\abc\issue-tracker\src\middleware\auth.js:58:21
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-10-2023 10:47:29: Error : please authenticate,Request : /api/viewIssue,stack:Error: please authenticate
+    at C:\Users\abc\issue-tracker\src\middleware\auth.js:40:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+error:  Mar-10-2023 12:40:18: Error : Email already found,Request : /api/createUser,stack:Error: Email already found
+    at createUser (C:\Users\abc\issue-tracker\src\controllers\admin_controller.js:21:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
