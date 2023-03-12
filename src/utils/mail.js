@@ -7,8 +7,9 @@ const sendWelcomeEmail = (email,password) => {
     .send({
         to: email,
         from: 'sahil.k@antino.io',
-        subject: 'Thanks for joining in!',
-        text: `Welcome to the issue-tracker application. Your credentials for login our application:  email: ${email} and password ${password}  .`
+        subject: 'Thanks for joining!!',
+        text: `Welcome to the issue-tracker application. 
+               Your credentials for login our application:  email: ${email} and password ${password}  .`
     })
     .then(() => {
         console.log('Email sent')
