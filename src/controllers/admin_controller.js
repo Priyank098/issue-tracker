@@ -12,13 +12,13 @@ const createUser = async (req, res, next) => {
             })
         }
         if (password.trim().length < 8 || password.trim().length > 20) {
-            throw new Error("password must be 8 to 20 cahracters long", {
+            throw new Error("Password must be 8 to 20 characters long", {
                 cause: { status: 400 }
             })
         }
         const userFound = await User.findOne({ email: email });
         if (userFound)
-            throw new Error("Email already found", {
+            throw new Error("Email already exists", {
                 cause: { status: 400 }
             })
         const user = await new User(req.body)
@@ -40,7 +40,7 @@ const getUser = async (req, res, next) => {
     try {
         const viewUser = await User.find()
         if (!viewUser) {
-            throw new Error("user not found", {
+            throw new Error("User not exists", {
                 cause: { status: 404 }
             })
         }
@@ -58,7 +58,7 @@ const getUserById = async (req, res, next) => {
     try {
         const viewUserById = await User.findById(req.params.id)
         if (!viewUserById) {
-            throw new Error("user not found", {
+            throw new Error("User not exists", {
                 cause: { status: 404 }
             })
         }
@@ -94,7 +94,7 @@ const updateUser = async (req, res, next) => {
             new: true
         })
         if (!updateUser) {
-            throw new Error("User not updated Please try after some time", {
+            throw new Error("User not updated please try after some time", {
                 cause: { status: 404 }
             })
         }
