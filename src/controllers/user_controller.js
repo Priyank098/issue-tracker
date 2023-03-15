@@ -470,4 +470,147 @@ const commentsCount = async (req, res, next) => {
     }
 }
 
-module.exports = { Login, createIssue, updateIssue, getIssue, getIssueById, deleteIssue, assignIssue, updateStatus, statusFilterCount, logout, userAssignedIssues, userIssues, barChart, addComment,isTokenValid,deleteComment ,viewComments,commentsCount}
+const sortByDate = async(req,res,next) =>{
+    try {
+        const sortByDate = await Issue.aggregate([
+            {$sort: {createdAt: -1}}
+        ])
+    
+        res.status(200).json({
+            success: true,
+            data: sortByDate
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
+const sortByUpdate = async(req,res,next) =>{
+    try {
+        const sortByUpdate = await Issue.aggregate([
+            {$sort: {updatedAt: -1}}
+        ])
+    
+        res.status(200).json({
+            success: true,
+            data: sortByUpdate
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+const sortBypriority = async(req,res,next) =>{
+    try {
+        const sortByPriority = await Issue.aggregate([{
+            $addFields: {
+             sortPriority: {
+              $switch: {
+               branches: [
+                {
+                 'case': {
+                  $eq: [
+                   '$priority',
+                   'HIGH'
+                  ]
+                 },
+                 then: 3
+                },
+                {
+                 'case': {
+                  $eq: [
+                   '$priority',
+                   'MEDIUM'
+                  ]
+                 },
+                 then: 2
+                },
+                {
+                 'case': {
+                  $eq: [
+                   '$priority',
+                   'LOW'
+                  ]
+                 },
+                 then: 1
+                }
+               ],
+               'default': 0
+              }
+             }
+            }
+           }, {
+            $sort: {
+             sortPriority: -1
+            }
+           }])
+        res.status(200).json({
+            success: true,
+            data: sortByPriority
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
+const sortByStatus = async(req,res,next) =>{
+    try {
+        const sortByStatus = await Issue.aggregate([{
+            $addFields: {
+             sortStatus: {
+              $switch: {
+               branches: [
+                {
+                 'case': {
+                  $eq: [
+                   '$status',
+                   'Completed'
+                  ]
+                 },
+                 then: 4
+                },
+                {
+                 'case': {
+                  $eq: [
+                   '$status',
+                   'inProgress'
+                  ]
+                 },
+                 then: 3
+                },
+                {
+                 'case': {
+                  $eq: [
+                   '$status',
+                   'Assigned'
+                  ]
+                 },
+                 then: 2
+                },
+                {
+                 'case': {
+                  $eq: [
+                   '$status',
+                   'unAssigned'
+                  ]
+                 },
+                 then: 1
+                }
+               ],
+               'default': 0
+              }
+             }
+            }
+           }, {
+            $sort: {
+                sortStatus: -1
+            }
+           }])
+        res.status(200).json({
+            success: true,
+            data: sortByStatus
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+module.exports = { Login, createIssue, updateIssue, getIssue, getIssueById, deleteIssue, assignIssue, updateStatus, statusFilterCount, logout, userAssignedIssues, userIssues, barChart, addComment,isTokenValid,deleteComment ,viewComments,commentsCount,sortByDate,sortBypriority,sortByStatus,sortByUpdate}
