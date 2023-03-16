@@ -53,6 +53,12 @@ router.get('/viewComments/:id',auth(),userController.viewComments)
 //count comment
 router.get('/commentsCount/:id',auth(),userController.commentsCount)
 
+//sorting Api's
+router.get('/sortByDate',auth(),userController.sortByDate)
+router.get('/sortBypriority',auth(),userController.sortBypriority)
+router.get('/sortByStatus',auth(),userController.sortByStatus)
+router.get('/sortByUpdate',auth(),userController.sortByUpdate)
+
 //token valiadation
 router.get('/isTokenValid',auth(),userController.isTokenValid)
 
