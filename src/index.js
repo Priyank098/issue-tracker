@@ -5,13 +5,12 @@ require("./config/database")
 const adminrouter = require("./routes/admin_route")
 const userRouter = require("./routes/user_route")
 const cors = require("cors");
-
 const app = express()
 app.use(cors());
 
 app.use(express.json());
 app.use('/api',adminrouter );
-app.use('/api',userRouter );
+app.use('/api',userRouter )
 
 const PORT = process.env.PORT;
 app.use(error_middleware)
