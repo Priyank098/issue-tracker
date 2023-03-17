@@ -1,7 +1,8 @@
 const express = require('express')
 const router = new express.Router()
 const userController = require("../controllers/user_controller")
-const {auth,verifyUser,isAssigned} = require("../middleware/auth")
+const {auth,verifyUser,isAssigned,verifyPremium} = require("../middleware/auth")
+// const razorpay = require("../utils/razorpay")
 //login
 router.post('/login',userController.Login) 
 
@@ -48,7 +49,7 @@ router.post('/addComment',auth(),userController.addComment)
 router.delete('/deleteComment/:id',auth(),userController.deleteComment)
 
 //view comment
-router.get('/viewComments/:id',auth(),userController.viewComments)
+router.get('/viewComments/:id',auth(),verifyPremium,userController.viewComments)
 
 //count comment
 router.get('/commentsCount/:id',auth(),userController.commentsCount)
@@ -61,5 +62,6 @@ router.get('/sortByUpdate',auth(),userController.sortByUpdate)
 
 //token valiadation
 router.get('/isTokenValid',auth(),userController.isTokenValid)
+// router.post('/checkout',require("../utils/razorpay"))
 
 module.exports = router;

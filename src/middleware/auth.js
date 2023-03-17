@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/user')
 const Issue = require("../models/issue")
 const { adminRoles } = require("../utils/roles")
-
+const open = require('open');
 const auth = (url = "", method = "") => {
     return (async (req, res, next) => {
         try {
@@ -55,6 +55,7 @@ const auth = (url = "", method = "") => {
                 }
                 else {
                     req.user = user;
+                    
                     next()
                 }
             }
@@ -81,6 +82,21 @@ const verifyUser = async (req, res, next) => {
         next(error)
     }
 }
+const verifyPremium = async (req, res, next) => {
+
+    try {
+        console.log(req.user._id);
+        const UserData = await User.findById(req.user._id)
+        if (UserData.isPremium === true) {
+            next()
+        } else {
+            open(`http://localhost:4000/checkout?token=${req.header('Authorization').replace('Bearer ', '')}`);
+            // res.redirect('http://localhost:4000/checkout')
+        }
+    } catch (error) {
+        next(error)
+    }
+}
 
 const isAssigned = async (req, res, next) => {
 
@@ -98,4 +114,4 @@ const isAssigned = async (req, res, next) => {
     }
 }
 
-module.exports = { auth, verifyUser, isAssigned }
+module.exports = { auth, verifyUser, isAssigned,verifyPremium }

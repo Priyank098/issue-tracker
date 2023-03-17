@@ -41,6 +41,10 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    isPremium: {
+        type: Boolean,
+        default: false
+    },
     assignedCount: {
         type: Number,
         default: 0
