@@ -30,7 +30,7 @@ router.get('/', async (req, res, next) => {
                 console.log(err);
             } else {
                 console.log(order);
-                res.render('checkout', { amount: order.amount, order_id: order.id,id:user._id });
+                res.render('checkout', { amount: order.amount, order_id: order.id, id: user._id });
             }
         });
     } catch (error) {
