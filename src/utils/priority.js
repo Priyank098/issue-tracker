@@ -1,6 +1,6 @@
 const Priority = {
-   values:['LOW','MEDIUM','HIGH'] ,
-   message: "Choose only from them LOW MEDIUM HIGH"
+   values:['Low','Medium','High'] ,
+   message: "Choose only from them Low Medium High"
 
   }
   

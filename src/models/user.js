@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs")
 const jwt = require('jsonwebtoken')
 const issue = require("./issue")
 const department = require("../utils/department")
+const bcryptSalt = process.env.BCRYPT_SALT;
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -48,6 +49,7 @@ const userSchema = new mongoose.Schema({
     token: {
         type: String,
     },
+    
 }, {
     timestamps: true
 });

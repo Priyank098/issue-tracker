@@ -12,7 +12,6 @@ app.use(cors());
 app.use(express.json());
 app.use('/api',adminrouter );
 app.use('/api',userRouter );
-
 const PORT = process.env.PORT;
 app.use(error_middleware)
 app.listen(PORT, () => {

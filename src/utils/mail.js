@@ -1,18 +1,21 @@
 const sgMail = require('@sendgrid/mail')
 
+require("dotenv").config({ path: `./src/env/dev.env`});
 sgMail.setApiKey("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")
 
-const sendWelcomeEmail = (email,password) => {
+
+const sendWelcomeEmail = (email,token) => {
     return sgMail
     .send({
-        to: email,
+        to: 'sahil.k@antino.io',
         from: 'sahil.k@antino.io',
-        subject: 'Thanks for joining!!',
-        text: `Welcome to the issue-tracker application. 
-               Your credentials for login our application:  email: ${email} and password ${password}  .`
+        subject: '"RESET YOUR PASSWORD"',
+        text: `Welcome to the issue-tracker application.`,
+        // html:`Here, your link is : <a href=http://localhost:4000/api/update-password?token=${token}> update password <a/>`
+        html: `Here, your link is : <a href=http://localhost:4000/api/reset-password?token=${token}> reset password <a/>`
     })
     .then(() => {
-        console.log('Email sent')
+        console.log('`password reset link has been sent to: ${email}`')
         return true;
     })
     .catch((error) => {

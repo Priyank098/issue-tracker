@@ -6,6 +6,15 @@ const {auth} = require("../middleware/auth")
 //create User
 router.post('/createUser',auth("/createUser","post"),admin_controller.createUser)
 
+//updatePassword 
+router.post('/update-password',admin_controller.requestPasswordReset )
+
+//forgetPassword 
+router.post('/forget-password',admin_controller.forgetPassword)
+
+//resetPassword 
+router.post('/reset-password',admin_controller.resetPassword)
+
 //update User
 router.patch('/updateUser/:id',auth("/updateUser/:id","patch"),admin_controller.updateUser)
 

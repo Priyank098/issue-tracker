@@ -17,16 +17,16 @@ const Priority = require("../utils/priority")
     priority : {
         type: String,
         enum :Priority,
-        required: "choose any one of them --- LOW MEDIUM HIGH."
+        required: "Choose any one of them --- Low Medium High."
     },
-    createdBy:{
+    createdBy : {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Users'
     },
     status : {
         type: String,
-        enum:Status,
+        enum: Status,
         default: Status.values[0]
     },
     date:{

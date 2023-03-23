@@ -1,8 +1,13 @@
 const User = require("../models/user")
 const bcrypt = require('bcryptjs')
+const crypto = require("crypto")
+const Token = require("../models/token")
+const bcryptSalt = process.env.BCRYPT_SALT
 const mongoose = require('mongoose')
 const {sendWelcomeEmail} = require('../utils/mail')
+const jwt = require('jsonwebtoken')
 
+// create user
 const createUser = async (req, res, next) => {
     const { email, password, name, department } = req.body
     try {
@@ -21,11 +26,10 @@ const createUser = async (req, res, next) => {
             throw new Error("Email already exists", {
                 cause: { status: 400 }
             })
-        const user = await new User(req.body)
-        sendWelcomeEmail(email,password)
-        if (!await user.save()) {
-            throw new Error("User not created")
-        }
+        const user = await User.create(req.body)
+        const token  = await user.generateAuthToken()
+        console.log(token)
+        sendWelcomeEmail(email,token)
         res.status(200).json({
             success: true,
             data: user
@@ -36,6 +40,85 @@ const createUser = async (req, res, next) => {
     }
 }
 
+// update password 
+const requestPasswordReset = async(req,res,next)=>{
+    const token = req.query.token
+    
+    const decoded = jwt.verify(token, 'jidjfidjidijij')
+    // console.log(token);
+    const user = await User.findOne({ _id: decoded._id, token: token })
+    if(!user){
+        throw new Error("User doesn't exist!", {
+            cause: { status: 400 }
+        }) 
+    }
+    // var password = req.body.password
+    const password =  await bcrypt.hash(req.body.password, 10)
+    const updateUser = await User.findByIdAndUpdate(user._id, {password:password}, {
+        new: true
+    })
+    if(!updateUser){
+        throw new Error("User password not updated", {
+            cause: { status: 400 }
+        })
+    }
+    res.status(200).json({ 
+        success: true,
+        data: "passsword updated"
+    })
+}
+
+// forget password
+const forgetPassword = async(req,res,next) => {
+    const email = req.body.email
+    try {
+       const user = await User.findOne({email: email})
+       if(!user){
+          throw new Error("User not exist", {
+            cause: { status: 400 }
+          })
+       }
+       const token  = await user.generateAuthToken()  
+    sendWelcomeEmail(email, token)
+    res.status(200).json({
+        success: true,
+        data: "forget password"
+    })
+    }catch (error){
+       next(error)
+    }
+}
+
+// reset password
+const resetPassword = async(req,res,next) => {
+    const token = req.query.token
+    const {password,newPassword} = req.body
+    try {
+       const tokendata = await User.findOne({token: token})
+       if(!tokendata){
+          throw new Error("This link has been expired")
+       }
+       if(password !== newPassword){
+        throw new Error("Password does not match Confirm password!")
+       }
+       if(tokendata){
+        const newspassword =  await bcrypt.hash(req.body.password, 10)
+        await User.findByIdAndUpdate(tokendata._id, {password:newspassword,token:"null"}, {
+            new: true,
+        })
+        
+    }
+    res.status(200).json({
+        success: true,
+        data: "reset password",
+        message: "User password has been reset"
+    })
+    }catch (error){
+       next(error)
+    }
+}
+
+// view user
 const getUser = async (req, res, next) => {
     try {
         const viewUser = await User.find()
@@ -54,6 +137,7 @@ const getUser = async (req, res, next) => {
     }
 }
 
+// view single user by id
 const getUserById = async (req, res, next) => {
     try {
         const viewUserById = await User.findById(req.params.id)
@@ -73,6 +157,7 @@ const getUserById = async (req, res, next) => {
 
 }
 
+// update user
 const updateUser = async (req, res, next) => {
     const updates = Object.keys(req.body)
     const allowedUpdates = ['name', 'email', 'department']
@@ -108,11 +193,10 @@ const updateUser = async (req, res, next) => {
     }
 }
 
-
+// delete user
 const deleteUser = async (req, res, next) => {
     try{
-            const _id = req.params.id
-            const deleteUser = await User.findByIdAndDelete(_id)
+            const deleteUser = await User.findByIdAndDelete(req.params.id)
             if (!deleteUser) {
                 throw new Error("User not deleted", {
                     cause: { status: 404 }
@@ -130,4 +214,4 @@ const deleteUser = async (req, res, next) => {
 }
 
 
-module.exports = { createUser, getUser, getUserById, updateUser, deleteUser }
+module.exports = { createUser , getUser , getUserById , updateUser , deleteUser , requestPasswordReset , forgetPassword ,resetPassword }

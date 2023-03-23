@@ -1,12 +1,14 @@
 const issue = require("../models/issue")
 const Issue = require("../models/issue")
 const User = require("../models/user")
+
 const Comment = require("../models/comment")
 const { validatingFields, update_issue, update_issue_helper } = require("../services/user.services")
 const Status = require("../utils/status")
 
+// login
 const Login = async (req, res, next) => {
-    const { email, password } = req.body
+    const { email, password } = req.body 
     try {
         if (!email || !password)
             throw new Error("Email or password should be valid", {
@@ -35,6 +37,8 @@ const Login = async (req, res, next) => {
     }
 }
 
+
+// create issue
 const createIssue = async (req, res, next) => {
     const { title, description, priority } = req.body
     const date = new Date()
@@ -48,7 +52,7 @@ const createIssue = async (req, res, next) => {
                 date: `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`,
                 status: Status.values[1]
             })
-            if (!await issue.save())
+            if (! await issue.save())
                 throw new Error("Data not inserted")
             else {
                 assignUserData.updateCount()
@@ -77,6 +81,7 @@ const createIssue = async (req, res, next) => {
     }
 }
 
+// update issue
 const updateIssue = async (req, res, next) => {
     const updates = Object.keys(req.body)
     const allowedUpdates = ['title', 'description', 'priority', 'assignedTo']
@@ -114,6 +119,8 @@ const updateIssue = async (req, res, next) => {
     }
 }
 
+
+// view issue
 const getIssue = async (req, res, next) => {
     try {
         const issueData = await Issue.find().populate("createdBy").populate("assignedTo")
@@ -131,6 +138,7 @@ const getIssue = async (req, res, next) => {
     }
 }
 
+// view single issue by id
 const getIssueById = async (req, res, next) => {
     try {
         if (!req.params.id) {
@@ -153,6 +161,7 @@ const getIssueById = async (req, res, next) => {
     }
 }
 
+// delete issue
 const deleteIssue = async (req, res, next) => {
     try {
         if (!req.params.id) {
@@ -198,6 +207,7 @@ const deleteIssue = async (req, res, next) => {
     }
 }
 
+// assign issue
 const assignIssue = async (req, res, next) => {
     try {
         const { _id, assignedTo } = req.body
@@ -234,6 +244,7 @@ const assignIssue = async (req, res, next) => {
     }
 }
 
+// update status
 const updateStatus = async (req, res, next) => {
     try {
         if (!Status.values.includes(req.body.status)) {
@@ -262,6 +273,7 @@ const updateStatus = async (req, res, next) => {
     }
 }
 
+// statusfiltercount
 const statusFilterCount = async (req, res, next) => {
     let unAssignedCount = 0, assignedCount = 0, inProgressCount = 0, completedCount = 0
 
@@ -293,6 +305,7 @@ const statusFilterCount = async (req, res, next) => {
     }
 }
 
+// logout
 const logout = async (req, res, next) => {
     try {
         req.user.token = ""
@@ -307,6 +320,7 @@ const logout = async (req, res, next) => {
     }
 }
 
+// user issues
 const userIssues = async (req, res, next) => {
     try {
         const issues = await Issue.find({ createdBy: req.user._id }).populate("createdBy").populate("assignedTo")
@@ -326,6 +340,7 @@ const userIssues = async (req, res, next) => {
     }
 }
 
+// usersAssigned issues
 const userAssignedIssues = async (req, res, next) => {
     try {
         const issues = await Issue.find({ assignedTo: req.user._id }).populate("createdBy").populate("assignedTo")
@@ -345,6 +360,7 @@ const userAssignedIssues = async (req, res, next) => {
     }
 }
 
+// bar chart
 const barChart = async (req, res, next) => {
     var dayWiseData = {
         day1:0,
@@ -381,6 +397,7 @@ const barChart = async (req, res, next) => {
     }
 }
 
+// add comment
 const addComment = async (req, res, next) => {
     const {issueId, comment } = req.body;
     const { _id, name} = req.user
@@ -402,6 +419,7 @@ const addComment = async (req, res, next) => {
     }
 }
 
+// delete comment
 const deleteComment = async (req, res, next) => {
     const id = req.params.id;
     const { _id} = req.user
@@ -431,6 +449,7 @@ const isTokenValid = async(req,res,next) =>{
     res.status(200).json({success:true})
 }
 
+// view comments
 const viewComments = async (req, res, next) => {
     try {
         if (!req.params.id) {
@@ -453,6 +472,7 @@ const viewComments = async (req, res, next) => {
     }
 }
 
+// comments count
 const commentsCount = async (req, res, next) => {
     try {
         if (!req.params.id) {

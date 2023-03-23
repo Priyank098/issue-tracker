@@ -5,6 +5,7 @@ const connectionParams={
     useNewUrlParser: true,  
     useUnifiedTopology: true,
 }
+mongoose.set('strictQuery',true)
 mongoose.connect(conn,connectionParams)
     .then( () => {
         console.log('Connected to database ')
